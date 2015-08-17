@@ -172,6 +172,17 @@ def user_by_anonymous_id(uid):
         return None
 
 
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+
+    class Meta(object):
+        db_table = 'tag'
+
+
 class UserStanding(models.Model):
     """
     This table contains a student's account's status.
@@ -338,6 +349,11 @@ class UserProfile(models.Model):
         if date is None:
             date = datetime.now(UTC)
         return date.year - year_of_birth <= age_limit
+
+
+class UserInterestingTag(models.Model):
+    user = models.ForeignKey(UserProfile)
+    tag = models.ForeignKey(Tag)
 
 
 @receiver(pre_save, sender=UserProfile)
