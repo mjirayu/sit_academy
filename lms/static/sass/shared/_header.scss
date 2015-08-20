@@ -3,7 +3,6 @@
 
 header.global {
   @extend %ui-depth1;
-  border-bottom: 1px solid $gray-l1;
   box-shadow: 0 1px 5px 0 $shadow-l1;
   background: $header-bg;
   position: relative;
@@ -273,7 +272,7 @@ header.global {
       margin: 0 $baseline+1 0 0;
       font-size: em(14);
       font-weight: 600;
-      text-transform: uppercase;
+      text-transform: none;
       letter-spacing: 0 !important;
 
       &:last-child {
@@ -283,12 +282,12 @@ header.global {
       a {
         display:block;
         padding: ($baseline/4);
-        color: $link-color;
-        font-weight: 600;
+        color: $link-color-nav;
+        font-weight: 300;
 
         &:hover, &:focus, &:active {
           text-decoration: none;
-          color: $link-color;
+          color: $link-color-hover-nav;
         }
       }
 
@@ -316,7 +315,7 @@ header.global {
       display: inline-block;
 
       .cta {
-        @extend %m-btn-primary;
+        @extend %m-btn-red;
       }
     }
   }
@@ -837,6 +836,7 @@ header.global-new {
 
 .view-login header.global-new .cta-login {
   text-decoration: none;
+  font-weight: 300;
   color: $courseware-hover-color;
 }
 

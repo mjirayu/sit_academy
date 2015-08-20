@@ -152,6 +152,7 @@ $sm-btn-linkedin: #0077b5;
     /** The forms **/
     .form-wrapper {
         padding-top: ($baseline + 5);
+        padding-bottom: ($baseline + 5);
 
         form {
             @include clearfix();

@@ -43,7 +43,7 @@
   padding:($baseline/2) ($baseline);
   text-align: center;
   text-shadow: none;
-  font-weight: 500;
+  font-weight: 300;
   letter-spacing: 0;
 
   &.disabled, &[disabled], &.is-disabled {
@@ -85,6 +85,27 @@
     background: $action-primary-disabled-bg; // needed for IE currently
   }
 }
+
+// red button
+%m-btn-red {
+  @extend %m-btn-base;
+  box-shadow: 0 2px 1px 0 #882727;
+  background: #D82F2F;
+  color: $white;
+
+  &:hover, &:active, &:focus {
+    background: #FD1616;
+  }
+  &:focus {
+    box-shadow: 0 0 6px 0 #D01111;
+  }
+
+  &.disabled, &[disabled] {
+    box-shadow: none;
+    background: $action-primary-disabled-bg; // needed for IE currently
+  }
+}
+
 
 // secondary button
 %m-btn-secondary {

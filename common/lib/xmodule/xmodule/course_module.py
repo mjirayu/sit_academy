@@ -926,6 +926,12 @@ class CourseFields(object):
         scope=Scope.settings,
     )
 
+    course_tag = List(
+        display_name=_("Course Tag"),
+        help=_("Enter Course Tag For Matching with User Interesting Tag"),
+        scope=Scope.settings,
+    )
+
 
 class CourseModule(CourseFields, SequenceModule):  # pylint: disable=abstract-method
     """
