@@ -106,7 +106,8 @@ header.global {
       }
 
       &:hover, &:focus, &:active {
-        background: $button-bg-hover-color;
+        //background: $button-bg-hover-color;
+        background: #DC6969;
       }
     }
   }
@@ -122,6 +123,7 @@ header.global {
       @include float(left);
       margin: 0;
       position: relative;
+      background-color: #D82F2F;
 
       > a {
         margin: 0;
@@ -130,7 +132,8 @@ header.global {
 
       &:last-child {
         > a {
-          padding: ($baseline/5) ($baseline/2);
+          padding: ($baseline/5) ($baseline/2) ($baseline/2+2);
+          color: $white;
 
           &.shopping-cart {
             border-radius: 4px;
@@ -143,12 +146,13 @@ header.global {
     }
 
     a.user-link {
-      @include padding(5px, 2px, 10px, 10px);
+      @include padding(5px, 10px, 10px, 10px);
       position: relative;
       text-transform: none;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 300;
       letter-spacing: 0;
+      color: $white;
 
       .icon {
         display: inline-block;

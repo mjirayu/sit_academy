@@ -168,12 +168,11 @@ header.global.slim {
     @include float(left);
     font-size: 0.9em;
     font-weight: 600;
-    color: $lighter-base-font-color;
+    color: $white;
     letter-spacing: 0;
     margin-top: 9px;
     margin-bottom: 0;
     text-transform: none;
-    text-shadow: 0 1px 0 #fff;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -181,6 +180,7 @@ header.global.slim {
     .provider {
       font: inherit;
       font-weight: bold;
+      color: $white;
     }
   }
 
