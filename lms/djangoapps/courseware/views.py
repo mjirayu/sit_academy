@@ -29,6 +29,7 @@ from django.views.decorators.cache import cache_control
 from django.db import transaction
 from markupsafe import escape
 
+from branding.views import get_course_enrollments
 from courseware import grades
 from courseware.access import has_access, in_preview_mode, _adjust_start_date_for_beta_testers
 from courseware.access_response import StartDateError
@@ -59,7 +60,7 @@ from course_modes.models import CourseMode
 
 from open_ended_grading import open_ended_notifications
 from open_ended_grading.views import StaffGradingTab, PeerGradingTab, OpenEndedGradingTab
-from student.models import UserTestGroup, CourseEnrollment
+from student.models import UserTestGroup, CourseEnrollment, UserInterestingTag
 from student.views import is_course_blocked
 from util.cache import cache, cache_if_anonymous
 from util.date_utils import strftime_localized
@@ -136,9 +137,32 @@ def courses(request):
         else:
             courses_list = sort_by_announcement(courses_list)
 
+    tag_list = []
+    recommend = []
+    enroll_list = []
+    courses = modulestore().get_courses()
+    tags = UserInterestingTag.objects.filter(user_id=request.user.id)
+    list_enroll = get_course_enrollments(request.user.id)
+
+    for course_enroll in list_enroll:
+        enroll_list.append(course_enroll.course.id)
+
+    for tag in tags:
+        tag_list.append(tag.tag.name)
+
+    for course in courses:
+        for tag in tag_list:
+            if tag in course.course_tag:
+                if course.id not in enroll_list:
+                    recommend.append(course)
+
     return render_to_response(
         "courseware/courses.html",
-        {'courses': courses_list, 'course_discovery_meanings': course_discovery_meanings}
+        {
+            'courses': courses_list,
+            'course_discovery_meanings': course_discovery_meanings,
+            'recommned_courses': recommend,
+        }
     )
 
 

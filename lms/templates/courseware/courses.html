@@ -29,6 +29,27 @@
 
 <%block name="pagetitle">${_("Courses")}</%block>
 
+% if len(recommned_courses):
+<section class="home">
+  <section class="courses-container">
+    <section class="highlighted-courses">
+      <h2 style="margin-top: 1em;">Reccomended Courses</h2>
+      % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+        <section class="courses">
+            <ul class="courses-listing">
+            %for course in recommned_courses[:settings.HOMEPAGE_COURSE_MAX]:
+              <li class="courses-listing-item">
+                <%include file="../course.html" args="course=course" />
+              </li>
+            %endfor
+            </ul>
+        </section>
+      % endif
+    </section>
+  </section>
+</section>
+% endif
+
 <section class="find-courses">
   <section class="courses-container">
     % if course_discovery_enabled:
