@@ -1965,7 +1965,7 @@ MKTG_URLS = {}
 MKTG_URL_LINK_MAP = {
     'ABOUT': 'about',
     'CONTACT': 'contact',
-    'FAQ': 'help',
+    'FAQ': 'faq',
     'COURSES': 'courses',
     'ROOT': 'root',
     'TOS': 'tos',
@@ -2128,6 +2128,7 @@ REGISTRATION_EXTRA_FIELDS = {
     'terms_of_service': 'hidden',
     'city': 'hidden',
     'country': 'hidden',
+    'interesting_tag': 'optional',
 }
 
 ########################## CERTIFICATE NAME ########################
