@@ -212,7 +212,7 @@ for key, value in settings.MKTG_URL_LINK_MAP.items():
     # To allow theme templates to inherit from default templates,
     # prepend a standard prefix
     if settings.FEATURES["USE_CUSTOM_THEME"]:
-        template = "theme-" + template
+        template = template
 
     # Make the assumption that the URL we want is the lowercased
     # version of the map key
@@ -723,3 +723,4 @@ urlpatterns += (
     url(r'^404$', handler404),
     url(r'^500$', handler500),
 )
+
