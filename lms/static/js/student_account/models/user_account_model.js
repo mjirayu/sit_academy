@@ -21,6 +21,7 @@
                 year_of_birth: null,
                 bio: null,
                 language_proficiencies: [],
+                interesting_tag: [],
                 requires_parental_consent: true,
                 profile_image: null,
                 default_public_account_fields: []

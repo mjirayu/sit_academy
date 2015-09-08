@@ -109,7 +109,7 @@ from student.helpers import (
     auth_pipeline_urls, get_next_url_for_login_page
 )
 from student.cookies import set_logged_in_cookies, delete_logged_in_cookies
-from student.models import anonymous_id_for_user
+from student.models import anonymous_id_for_user, Tag, UserInterestingTag
 from shoppingcart.models import DonationConfiguration, CourseRegistrationCode
 
 from embargo import api as embargo_api
@@ -1697,6 +1697,14 @@ def create_account_with_params(request, params):
     new_user = authenticate(username=user.username, password=params['password'])
     login(request, new_user)
     request.session.set_expiry(0)
+
+    all_tags = Tag.objects.all()
+    for tag in all_tags:
+        if params[tag.name.lower()] == 'true':
+            UserInterestingTag.objects.create(
+                user_id=new_user.id,
+                tag_id=tag.id
+            )
 
     # TODO: there is no error checking here to see that the user actually logged in successfully,
     # and is not yet an active user.

@@ -231,6 +231,13 @@ $sm-btn-linkedin: #0077b5;
             font-weight: 500;
         }
 
+        label.interesting_tag {
+          display: inline !important;
+          position: relative;
+          top: -8px;
+          font-size: 0.9em;
+        }
+
         #login-remember {
             line-height: 0;
             height: auto;

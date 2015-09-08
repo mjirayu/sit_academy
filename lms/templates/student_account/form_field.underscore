@@ -36,6 +36,9 @@
             } %>
             <% if ( required ) { %> aria-required="true" required<% } %> ></textarea>
     <% } else { %>
+        <% if (defaultValue == 1) { %>
+          <label> Interesting Tag </label>
+        <% } %>
         <input id="<%= form %>-<%= name %>"
            type="<%= type %>"
            name="<%= name %>"
@@ -55,7 +58,14 @@
         <% if ( instructions ) { %> <span class="tip tip-input" id="<%= form %>-<%= name %>-desc"><%= instructions %></span><% } %>
     <% } %>
 
-    <% if ( type === 'checkbox' ) { %>
+    <% if ( type === 'checkbox' && (name !== 'terms_of_service' && name !== 'honor_code')) { %>
+        <label for="<%= form %>-<%= name %>" class="interesting_tag">
+            <%= label %>
+            <% if ( required && requiredStr ) { %> <%= requiredStr %><% } %>
+        </label>
+    <% } %>
+
+    <% if ( type === 'checkbox' && (name === 'terms_of_service' || name === 'honor_code')) { %>
         <label for="<%= form %>-<%= name %>">
             <%= label %>
             <% if ( required && requiredStr ) { %> <%= requiredStr %><% } %>

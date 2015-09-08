@@ -102,6 +102,15 @@
     select, input {
         width: 100%;
     }
+
+    label {
+        margin-right: 100%;
+    }
+
+    .interesting_checkbox {
+        margin-bottom: 1em;
+        width: 25px;
+    }
 }
 
 .u-field-message {
