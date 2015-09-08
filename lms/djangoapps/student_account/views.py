@@ -26,7 +26,7 @@ from external_auth.login_and_register import (
     login as external_auth_login,
     register as external_auth_register
 )
-from student.models import UserProfile
+from student.models import UserProfile, Tag
 from student.views import (
     signin_user as old_login_view,
     register_user as old_register_view
@@ -358,6 +358,11 @@ def account_settings_context(request):
 
     year_of_birth_options = [(unicode(year), unicode(year)) for year in UserProfile.VALID_YEARS]
 
+    tags = []
+    all_tags = Tag.objects.all()
+    for tag in all_tags:
+        tags.append([unicode(tag.id), unicode(tag.name)])
+
     context = {
         'auth': {},
         'duplicate_provider': None,
@@ -376,7 +381,9 @@ def account_settings_context(request):
                 'options': year_of_birth_options,
             }, 'preferred_language': {
                 'options': settings.ALL_LANGUAGES,
-            }
+            }, 'interesting_tag': {
+                'options': tags,
+            },
         },
         'platform_name': settings.PLATFORM_NAME,
         'user_accounts_api_url': reverse("accounts_api", kwargs={'username': user.username}),

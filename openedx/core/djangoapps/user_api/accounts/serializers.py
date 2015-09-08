@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from openedx.core.djangoapps.user_api.accounts import NAME_MIN_LENGTH
 from openedx.core.djangoapps.user_api.serializers import ReadOnlyFieldsSerializerMixin
 
-from student.models import UserProfile, LanguageProficiency
+from student.models import UserProfile, LanguageProficiency, UserInterestingTag
 from .image_helpers import get_profile_image_urls_for_user
 
 
@@ -32,6 +32,24 @@ class LanguageProficiencySerializer(serializers.ModelSerializer):
             return None
 
 
+class UserInterestingTagSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = UserInterestingTag
+        fields = ("tag",)
+
+    def get_identity(self, data):
+        """
+        This is used in bulk updates to determine the identity of an object.
+        The default is to use the id of an object, but we want to override that
+        and consider the language code to be the canonical identity of a
+        LanguageProficiency model.
+        """
+        try:
+            return data.get('tag', None)
+        except AttributeError:
+            return None
+
+
 class AccountUserSerializer(serializers.HyperlinkedModelSerializer, ReadOnlyFieldsSerializerMixin):
     """
     Class that serializes the portion of User model needed for account information.
@@ -50,12 +68,14 @@ class AccountLegacyProfileSerializer(serializers.HyperlinkedModelSerializer, Rea
     profile_image = serializers.SerializerMethodField("get_profile_image")
     requires_parental_consent = serializers.SerializerMethodField("get_requires_parental_consent")
     language_proficiencies = LanguageProficiencySerializer(many=True, allow_add_remove=True, required=False)
+    user_interesting_tag = UserInterestingTagSerializer(many=True, allow_add_remove=True, required=False)
 
     class Meta(object):  # pylint: disable=missing-docstring
         model = UserProfile
         fields = (
             "name", "gender", "goals", "year_of_birth", "level_of_education", "country",
-            "mailing_address", "bio", "profile_image", "requires_parental_consent", "language_proficiencies"
+            "mailing_address", "bio", "profile_image", "requires_parental_consent", "language_proficiencies",
+            "user_interesting_tag"
         )
         # Currently no read-only field, but keep this so view code doesn't need to know.
         read_only_fields = ()

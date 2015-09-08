@@ -24,6 +24,7 @@ from openedx.core.lib.api.permissions import ApiKeyHeaderPermission
 import third_party_auth
 from django_comment_common.models import Role
 from edxmako.shortcuts import marketing_link
+from student.models import Tag
 from student.views import create_account_with_params
 from student.cookies import set_logged_in_cookies
 from openedx.core.lib.api.authentication import SessionAuthenticationAllowInactiveUser
@@ -162,6 +163,7 @@ class RegistrationView(APIView):
         "gender",
         "year_of_birth",
         "level_of_education",
+        "interesting_tag",
         "mailing_address",
         "goals",
         "honor_code",
@@ -696,6 +698,20 @@ class RegistrationView(APIView):
                 "required": error_msg
             }
         )
+
+    def _add_interesting_tag_field(self, form_desc, required=True):
+
+        all_tags = Tag.objects.all()
+
+        for tag in all_tags:
+            label = _(unicode(tag.name))
+            form_desc.add_field(
+                tag.name.lower(),
+                label=label,
+                field_type="checkbox",
+                default=tag.id,
+                required=required
+            )
 
     def _apply_third_party_auth_overrides(self, request, form_desc):
         """Modify the registration form if the user has authenticated with a third-party provider.

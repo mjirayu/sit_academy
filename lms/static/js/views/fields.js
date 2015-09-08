@@ -1,13 +1,14 @@
 ;(function (define, undefined) {
     'use strict';
     define([
-        'gettext', 'jquery', 'underscore', 'backbone', 
+        'gettext', 'jquery', 'underscore', 'backbone',
         'text!templates/fields/field_readonly.underscore',
         'text!templates/fields/field_dropdown.underscore',
         'text!templates/fields/field_link.underscore',
         'text!templates/fields/field_text.underscore',
         'text!templates/fields/field_textarea.underscore',
         'text!templates/fields/field_image.underscore',
+        'text!templates/fields/field_checkbox.underscore',
         'backbone-super', 'jquery.fileupload'
     ], function (gettext, $, _, Backbone,
                  field_readonly_template,
@@ -15,14 +16,15 @@
                  field_link_template,
                  field_text_template,
                  field_textarea_template,
-                 field_image_template
+                 field_image_template,
+                 field_checkbox_template
     ) {
 
         var messageRevertDelay = 6000;
         var FieldViews = {};
 
         FieldViews.FieldView = Backbone.View.extend({
-                
+
             fieldType: 'generic',
 
             className: function () {
@@ -793,6 +795,47 @@
                     ++i;
                 }
                 return size.toFixed(1)*1 + ' ' + units[i];
+            }
+        });
+
+        FieldViews.CheckboxFieldView = FieldViews.EditableFieldView.extend({
+
+            fieldType: 'checkbox',
+
+            fieldTemplate: field_checkbox_template,
+
+            events: {
+                'click input': 'saveValue',
+            },
+
+            initialize: function (options) {
+                this._super(options);
+                _.bindAll(this, 'render', 'fieldValue', 'saveValue');
+            },
+
+            render: function () {
+                this.$el.html(this.template({
+                    id: this.options.valueAttribute,
+                    title: this.options.title,
+                    value: this.modelValue(),
+                    message: this.helpMessage,
+                    tags: this.options.options,
+                }));
+                this.delegateEvents();
+                return this;
+            },
+
+            saveValue: function () {
+                var attributes = {};
+                var checkboxes = $('.u-field-value input[type=checkbox]');
+                var values = [];
+                for (var i = 0; i < checkboxes.length; i++) {
+                  if ($(checkboxes[i]).is(':checked')) {
+                    values.push({'tag': $(checkboxes[i]).val() });
+                  }
+                }
+                attributes[this.options.valueAttribute] = values;
+                this.saveAttributes(attributes);
             }
         });
 

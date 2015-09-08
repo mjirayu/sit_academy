@@ -352,7 +352,7 @@ class UserProfile(models.Model):
 
 
 class UserInterestingTag(models.Model):
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile, db_index=True, related_name='user_interesting_tag')
     tag = models.ForeignKey(Tag)
 
 

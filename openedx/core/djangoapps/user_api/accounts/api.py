@@ -171,6 +171,8 @@ def update_account_settings(requesting_user, update, username=None):
     user_serializer = AccountUserSerializer(existing_user, data=update)
     legacy_profile_serializer = AccountLegacyProfileSerializer(existing_user_profile, data=update)
 
+    print legacy_profile_serializer.data
+
     for serializer in user_serializer, legacy_profile_serializer:
         field_errors = add_serializer_errors(serializer, update, field_errors)
 
@@ -196,6 +198,10 @@ def update_account_settings(requesting_user, update, username=None):
         if "language_proficiencies" in update:
             old_language_proficiencies = legacy_profile_serializer.data["language_proficiencies"]
 
+        # User Interesting tag
+        if "user_interesting_tag" in update:
+            old_user_interesting_tag = legacy_profile_serializer.data["user_interesting_tag"]
+
         for serializer in user_serializer, legacy_profile_serializer:
             serializer.save()
 
@@ -207,6 +213,16 @@ def update_account_settings(requesting_user, update, username=None):
                 setting_name="language_proficiencies",
                 old_value=old_language_proficiencies,
                 new_value=new_language_proficiencies,
+            )
+
+        if "user_interesting_tag" in update:
+            new_user_interesting_tag = legacy_profile_serializer.data["user_interesting_tag"]
+            emit_setting_changed_event(
+                user=existing_user,
+                db_table=existing_user_profile.language_proficiencies.model._meta.db_table,
+                setting_name="user_interesting_tag",
+                old_value=old_user_interesting_tag,
+                new_value=new_user_interesting_tag,
             )
 
         # If the name was changed, store information about the change operation. This is outside of the

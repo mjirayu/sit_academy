@@ -1,0 +1,15 @@
+<label class="u-field-title" for="u-field-input-<%- id %>">
+    <%- gettext(title) %>
+</label>
+<span class="u-field-value">
+    <% _.each(tags, function(tag) { %>
+    <label>
+        <input class="interesting_checkbox" id="u-field-input-<%- id %>-<%- tag[0] %>" aria-describedby="u-field-message-help-<%- id %>" type="checkbox" name="<%- id %>" value="<%- tag[0] %>"
+        <% _.each(value, function(obj) { if (tag[0] == obj.tag) { print('checked') } else { print('')}; }); %>><%- tag[1] %>
+    </label>
+    <% }); %>
+</span>
+<span class="u-field-message" id="u-field-message-<%- id %>">
+    <span class="u-field-message-notification" aria-live="polite"></span>
+    <span class="u-field-message-help" id="u-field-message-help-<%- id %>"> <%- message %></span>
+</span>

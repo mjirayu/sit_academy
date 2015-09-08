@@ -130,6 +130,16 @@
                                 options: fieldsData.preferred_language.options,
                                 persistChanges: true
                             })
+                        },
+                        {
+                            view: new FieldViews.CheckboxFieldView({
+                                model: userAccountModel,
+                                title: gettext('Interesting Tag'),
+                                valueAttribute: 'user_interesting_tag',
+                                helpMessage: gettext('Choose Tag that you interested in'),
+                                options: fieldsData.interesting_tag.options,
+                                persistChanges: true,
+                            })
                         }
                     ]
                 }
