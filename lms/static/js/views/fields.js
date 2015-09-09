@@ -810,7 +810,7 @@
 
             initialize: function (options) {
                 this._super(options);
-                _.bindAll(this, 'render', 'fieldValue', 'saveValue');
+                _.bindAll(this, 'render', 'saveValue');
             },
 
             render: function () {
