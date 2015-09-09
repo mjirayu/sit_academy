@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-08-07 13:49+0000\n"
-"PO-Revision-Date: 2015-08-07 13:50:42.221639\n"
+"POT-Creation-Date: 2015-09-09 08:40+0000\n"
+"PO-Revision-Date: 2015-09-09 08:41:20.660988\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -2511,22 +2511,6 @@ msgstr "ثققخق لثرثقشفهرل لقشيثس. حمثشسث فقغ شلش
 msgid "Error generating problem grade report. Please try again."
 msgstr "ثققخق لثرثقشفهرل حقخزمثو لقشيث قثحخقف. حمثشسث فقغ شلشهر."
 
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Unavailable metric display."
-msgstr "عرشدشهمشزمث وثفقهذ يهسحمشغ."
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Error fetching grade distributions."
-msgstr "ثققخق بثفذاهرل لقشيث يهسفقهزعفهخرس."
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Last Updated: <%= timestamp %>"
-msgstr "مشسف عحيشفثي: <%= timestamp %>"
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "<%= num_students %> students scored."
-msgstr "<%= num_students %> سفعيثرفس سذخقثي."
-
 #: lms/static/coffee/src/instructor_dashboard/membership.js
 #: lms/static/js/student_account/views/account_settings_factory.js
 #: lms/static/js/student_profile/views/learner_profile_factory.js
@@ -3717,6 +3701,14 @@ msgstr "غثشق خب زهقفا"
 #: lms/static/js/student_profile/views/learner_profile_factory.js
 msgid "Preferred Language"
 msgstr "حقثبثققثي مشرلعشلث"
+
+#: lms/static/js/student_account/views/account_settings_factory.js
+msgid "Interesting Tag"
+msgstr "هرفثقثسفهرل فشل"
+
+#: lms/static/js/student_account/views/account_settings_factory.js
+msgid "Choose Tag that you interested in"
+msgstr "ذاخخسث فشل فاشف غخع هرفثقثسفثي هر"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Connected Accounts"
@@ -5337,14 +5329,15 @@ msgstr "مشسف ثيهفثي:"
 msgid "Clear search results"
 msgstr "ذمثشق سثشقذا قثسعمفس"
 
+#: lms/templates/fields/field_checkbox.underscore
+#: lms/templates/fields/field_text.underscore
+msgid "title"
+msgstr "فهفمث"
+
 #: lms/templates/fields/field_dropdown.underscore
 #: lms/templates/fields/field_textarea.underscore
 msgid "Click to edit"
 msgstr "ذمهذن فخ ثيهف"
-
-#: lms/templates/fields/field_text.underscore
-msgid "title"
-msgstr "فهفمث"
 
 #: lms/templates/instructor/instructor_dashboard_2/cohort-discussions-course-wide.underscore
 #: lms/templates/instructor/instructor_dashboard_2/cohorts.underscore

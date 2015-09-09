@@ -31,9 +31,14 @@ def released_languages():
     """
     released_language_codes = DarkLangConfig.current().released_languages_list
     default_language_code = settings.LANGUAGE_CODE
+    second_language_code = settings.LANGUAGE_CODE_2
 
     if default_language_code not in released_language_codes:
         released_language_codes.append(default_language_code)
+        released_language_codes.sort()
+
+    if second_language_code not in released_language_codes:
+        released_language_codes.append(second_language_code)
         released_language_codes.sort()
 
     # Intersect the list of valid language tuples with the list

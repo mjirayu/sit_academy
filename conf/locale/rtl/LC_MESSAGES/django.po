@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-08-07 13:50+0000\n"
-"PO-Revision-Date: 2015-08-07 13:50:41.691914\n"
+"POT-Creation-Date: 2015-09-09 08:41+0000\n"
+"PO-Revision-Date: 2015-09-09 08:41:20.219934\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -3139,6 +3139,14 @@ msgid ""
 msgstr ""
 "فاث وهرهوعو لقشيث فاشف ش مثشقرثق وعسف ثشقر فخ قثذثهدث ذقثيهف هر فاث ذخعقسث, "
 "شس ش يثذهوشم زثفصثثر 0.0 شري 1.0. بخق ثطشوحمث, بخق 75%, ثرفثق 0.75."
+
+#: common/lib/xmodule/xmodule/course_module.py
+msgid "Course Tag"
+msgstr "ذخعقسث فشل"
+
+#: common/lib/xmodule/xmodule/course_module.py
+msgid "Enter Course Tag For Matching with User Interesting Tag"
+msgstr "ثرفثق ذخعقسث فشل بخق وشفذاهرل صهفا عسثق هرفثقثسفهرل فشل"
 
 #: common/lib/xmodule/xmodule/course_module.py
 msgid "General"
@@ -10507,8 +10515,8 @@ msgstr "بخق شرغخرث, شرغصاثقث, شرغفهوث"
 #. Translators: 'Open edX' is a brand, please keep this untranslated. See
 #. http://openedx.org for more information.
 #: lms/templates/index.html
-msgid "Welcome to Open edX!"
-msgstr "صثمذخوث فخ خحثر ثيط!"
+msgid "Welcome to SIT ACADEMY!"
+msgstr "صثمذخوث فخ سهف شذشيثوغ!"
 
 #. Translators: 'Open edX' is a brand, please keep this untranslated. See
 #. http://openedx.org for more information.
@@ -12404,8 +12412,8 @@ msgstr ""
 "رخص!{link_end}"
 
 #: lms/templates/courseware/info.html
-msgid "View Updates in {studio_name}"
-msgstr "دهثص عحيشفثس هر {studio_name}"
+msgid "View Updates in Studio"
+msgstr "دهثص عحيشفثس هر سفعيهخ"
 
 #: lms/templates/courseware/info.html
 msgid "Course Updates &amp; News"

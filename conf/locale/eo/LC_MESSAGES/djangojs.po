@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-08-07 13:49+0000\n"
-"PO-Revision-Date: 2015-08-07 13:50:42.221639\n"
+"POT-Creation-Date: 2015-09-09 08:40+0000\n"
+"PO-Revision-Date: 2015-09-09 08:41:20.660988\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -2657,23 +2657,6 @@ msgstr ""
 "Érrör générätïng prößlém grädé répört. Pléäsé trý ägäïn. Ⱡ'σяєм ιρѕυм ∂σłσя "
 "ѕιт αмєт, ¢σηѕє¢тєтυя α#"
 
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Unavailable metric display."
-msgstr "Ûnäväïläßlé métrïç dïspläý. Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє#"
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Error fetching grade distributions."
-msgstr ""
-"Érrör fétçhïng grädé dïstrïßütïöns. Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тєт#"
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "Last Updated: <%= timestamp %>"
-msgstr "Läst Ûpdätéd: <%= timestamp %> Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмє#"
-
-#: lms/static/coffee/src/instructor_dashboard/instructor_analytics.js
-msgid "<%= num_students %> students scored."
-msgstr "<%= num_students %> stüdénts sçöréd. Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, #"
-
 #: lms/static/coffee/src/instructor_dashboard/membership.js
 #: lms/static/js/student_account/views/account_settings_factory.js
 #: lms/static/js/student_profile/views/learner_profile_factory.js
@@ -4079,6 +4062,15 @@ msgstr "Ýéär öf Bïrth Ⱡ'σяєм ιρѕυм ∂σłσя ѕι#"
 #: lms/static/js/student_profile/views/learner_profile_factory.js
 msgid "Preferred Language"
 msgstr "Préférréd Längüägé Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт#"
+
+#: lms/static/js/student_account/views/account_settings_factory.js
+msgid "Interesting Tag"
+msgstr "Ìntéréstïng Täg Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт α#"
+
+#: lms/static/js/student_account/views/account_settings_factory.js
+msgid "Choose Tag that you interested in"
+msgstr ""
+"Çhöösé Täg thät ýöü ïntéréstéd ïn Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тє#"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Connected Accounts"
@@ -5944,14 +5936,15 @@ msgstr "Läst Édïtéd: Ⱡ'σяєм ιρѕυм ∂σłσя ѕ#"
 msgid "Clear search results"
 msgstr "Çléär séärçh résülts Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, #"
 
+#: lms/templates/fields/field_checkbox.underscore
+#: lms/templates/fields/field_text.underscore
+msgid "title"
+msgstr "tïtlé Ⱡ'σяєм ιρѕ#"
+
 #: lms/templates/fields/field_dropdown.underscore
 #: lms/templates/fields/field_textarea.underscore
 msgid "Click to edit"
 msgstr "Çlïçk tö édït Ⱡ'σяєм ιρѕυм ∂σłσя ѕι#"
-
-#: lms/templates/fields/field_text.underscore
-msgid "title"
-msgstr "tïtlé Ⱡ'σяєм ιρѕ#"
 
 #: lms/templates/instructor/instructor_dashboard_2/cohort-discussions-course-wide.underscore
 #: lms/templates/instructor/instructor_dashboard_2/cohorts.underscore

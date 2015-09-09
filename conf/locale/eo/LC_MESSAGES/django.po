@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-08-07 13:50+0000\n"
-"PO-Revision-Date: 2015-08-07 13:50:41.691914\n"
+"POT-Creation-Date: 2015-09-09 08:41+0000\n"
+"PO-Revision-Date: 2015-09-09 08:41:20.219934\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -3636,6 +3636,16 @@ msgstr ""
 "¢σηѕєqυαт. ∂υιѕ αυтє ιяυяє ∂σłσя ιη яєρяєнєη∂єяιт ιη νσłυρтαтє νєłιт єѕѕє "
 "¢ιłłυм ∂σłσяє єυ ƒυgιαт ηυłłα ραяιαтυя. єχ¢єρтєυя ѕιηт σ¢¢αє¢αт ¢υρι∂αтαт "
 "ηση ρяσι∂єηт, ѕυηт ιη ¢υłρα qυι σƒƒι¢ια ∂єѕєяυηт мσłłιт αηιм ι∂ єѕ#"
+
+#: common/lib/xmodule/xmodule/course_module.py
+msgid "Course Tag"
+msgstr "Çöürsé Täg Ⱡ'σяєм ιρѕυм ∂σłσ#"
+
+#: common/lib/xmodule/xmodule/course_module.py
+msgid "Enter Course Tag For Matching with User Interesting Tag"
+msgstr ""
+"Éntér Çöürsé Täg För Mätçhïng wïth Ûsér Ìntéréstïng Täg Ⱡ'σяєм ιρѕυм ∂σłσя "
+"ѕιт αмєт, ¢σηѕє¢тєтυя α#"
 
 #: common/lib/xmodule/xmodule/course_module.py
 msgid "General"
@@ -12055,8 +12065,8 @@ msgstr "För änýöné, änýwhéré, änýtïmé Ⱡ'σяєм ιρѕυм ∂σ
 #. Translators: 'Open edX' is a brand, please keep this untranslated. See
 #. http://openedx.org for more information.
 #: lms/templates/index.html
-msgid "Welcome to Open edX!"
-msgstr "Wélçömé tö Öpén édX! Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, #"
+msgid "Welcome to SIT ACADEMY!"
+msgstr "Wélçömé tö SÌT ÀÇÀDÉMÝ! Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σ#"
 
 #. Translators: 'Open edX' is a brand, please keep this untranslated. See
 #. http://openedx.org for more information.
@@ -14181,8 +14191,8 @@ msgstr ""
 "nöw!{link_end} Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тєтυя α#"
 
 #: lms/templates/courseware/info.html
-msgid "View Updates in {studio_name}"
-msgstr "Vïéw Ûpdätés ïn {studio_name} Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт,#"
+msgid "View Updates in Studio"
+msgstr "Vïéw Ûpdätés ïn Stüdïö Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢#"
 
 #: lms/templates/courseware/info.html
 msgid "Course Updates &amp; News"

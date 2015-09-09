@@ -358,6 +358,8 @@ def account_settings_context(request):
 
     year_of_birth_options = [(unicode(year), unicode(year)) for year in UserProfile.VALID_YEARS]
 
+    print released_languages()
+
     tags = []
     all_tags = Tag.objects.all()
     for tag in all_tags:
