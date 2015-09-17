@@ -145,7 +145,8 @@ def courses(request):
     list_enroll = get_course_enrollments(request.user.id)
 
     for course_enroll in list_enroll:
-        enroll_list.append(course_enroll.course.id)
+        if course_enroll.course is not None:
+            enroll_list.append(course_enroll.course.id)
 
     for tag in tags:
         tag_list.append(tag.tag.name)
