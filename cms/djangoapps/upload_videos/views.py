@@ -16,7 +16,9 @@ def video_list(request, course_key_string=None):
     course_key = CourseKey.from_string(course_key_string)
     course_module = modulestore().get_course(course_key)
 
-    upload_videos = UploadVideo.objects.all()
+    upload_videos = UploadVideo.objects.filter(
+        course_id=course_key_string
+    )
 
     return render_to_response('video_upload/video_list.html', {
         'context_course': course_module,
