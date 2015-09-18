@@ -1,0 +1,58 @@
+<%inherit file="../base.html" />
+<%def name="online_help_token()"><% return "files" %></%def>
+<%namespace name='static' file='../static_content.html'/>
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+%>
+<%block name="title">${_("Upload Video List")}</%block>
+
+<%block name="content">
+<%
+  video_upload = reverse('upload_videos.views.video_upload', kwargs={'course_key_string': unicode(course_key)})
+%>
+
+<div class="wrapper-mast wrapper">
+    <header class="mast has-actions has-subtitle">
+        <h1 class="page-header">
+            <small class="subtitle">${_("Content")}</small>
+            <span class="sr">&gt; </span>${_("Uploads Video")}
+        </h1>
+
+        <nav class="nav-actions" aria-label="${_('Page Actions')}">
+            <h3 class="sr">${_("Page Actions")}</h3>
+            <ul>
+                <li class="nav-item">
+                    <a href="${video_upload}" class="button upload-button new-button"><i class="icon fa fa-plus"></i> ${_("Upload Video")}</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<div class="wrapper-content wrapper">
+    <section class="content">
+        <article class="content-primary" role="main">
+
+          <div class="assets-library">
+              <table class="assets-table">
+                % if upload_videos:
+                  % for video in upload_videos:
+                    <li>
+                      ${video.name}
+                      ${site_name}/${video.video}
+                    </li>
+                  % endfor
+                % else:
+                  <p>
+                    ${_('No video on this course.')}
+                  </p>
+                % endif
+              </table>
+          </div>
+
+        </article>
+    </section>
+</div>
+
+</%block>

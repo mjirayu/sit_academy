@@ -440,6 +440,10 @@ STATICFILES_DIRS = [
     # ("book", ENV_ROOT / "book_images"),
 ]
 
+# Media content
+MEDIA_ROOT = '/edx/var/edxapp/media/'
+MEDIA_URL = '/media/'
+
 # Locale/Internationalization
 TIME_ZONE = 'Asia/Bangkok'  # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 LANGUAGE_CODE = 'th'  # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -727,6 +731,7 @@ INSTALLED_APPS = (
     'student',  # misleading name due to sharing with lms
     'openedx.core.djangoapps.course_groups',  # not used in cms (yet), but tests run
     'xblock_config',
+    'upload_videos',
 
     # Tracking
     'track',

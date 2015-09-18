@@ -1,0 +1,57 @@
+<%inherit file="../base.html" />
+<%def name="online_help_token()"><% return "files" %></%def>
+<%namespace name='static' file='../static_content.html'/>
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+%>
+<%block name="title">${_("Upload Video Form")}</%block>
+
+
+
+<%block name="content">
+<div class="wrapper-mast wrapper">
+    <header class="mast has-actions has-subtitle">
+        <h1 class="page-header">
+            <small class="subtitle">${_("Content")}</small>
+            <span class="sr">&gt; </span>${_("Uploads Video Form")}
+        </h1>
+    </header>
+</div>
+
+<div class="wrapper-content wrapper">
+    <section class="content">
+        <article class="content-primary" role="main">
+          <form role="form" enctype="multipart/form-data" method="POST" id="upload-form">
+            <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }" />
+
+            ${ form }
+
+            <button type="submit" class="button upload-button new-button">
+              Upload
+            </button>
+          </form>
+        </article>
+    </section>
+</div>
+</%block>
+
+
+<%block name="jsextra">
+<script type="text/javascript" src="${static.url("js/upload_videos/jquery.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/upload_videos/bootstrap.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/upload_videos/bootstrap-filestyle.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/upload_videos/bootstrap-uploadprogress.js")}"></script>
+
+<script>
+<%
+  video_list = reverse('video_list', kwargs={'course_key_string': unicode(course_key)})
+%>
+$(":file").filestyle({buttonBefore: true});
+$("form").uploadprogress({
+  redirect_url: "${video_list}"
+});
+$('#id_course_id').val("${course_key}");
+</script>
+
+</%block>

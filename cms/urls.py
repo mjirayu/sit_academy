@@ -183,6 +183,14 @@ if settings.FEATURES.get('CERTIFICATES_HTML_VIEW'):
             'contentstore.views.certificates.certificates_list_handler')
     )
 
+# Video Uploads to Server
+urlpatterns += patterns(
+    'upload_videos.views',
+
+    url(r'^video_list/{}/$'.format(settings.COURSE_KEY_PATTERN), 'video_list', name='video_list'),
+    url(r'^video_list/{}/upload$'.format(settings.COURSE_KEY_PATTERN), 'video_upload', name='video_upload'),
+)
+
 if settings.DEBUG:
     try:
         from .urls_dev import urlpatterns as dev_urlpatterns
