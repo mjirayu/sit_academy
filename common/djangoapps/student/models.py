@@ -356,6 +356,14 @@ class UserInterestingTag(models.Model):
     tag = models.ForeignKey(Tag)
 
 
+class UserEvent(models.Model):
+    user = models.ForeignKey(UserProfile, db_index=True, related_name='user_event')
+    title = models.CharField(max_length=255)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    color = models.CharField(max_length=100)
+
+
 @receiver(pre_save, sender=UserProfile)
 def user_profile_pre_save_callback(sender, **kwargs):
     """
