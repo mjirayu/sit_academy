@@ -29,11 +29,30 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
 <div class="message-banner" aria-live="polite"></div>
 <div class="wrapper-profile">
     <div class="ui-loading-indicator">
-        <p><span class="spin"><i class="icon fa fa-refresh" aria-hidden="true"></i></span> <span class="copy">${_("Loading")}</span></p>
+        <p><span class="spin"><i class="icon fa fa-refresh" aria-hidden="true"></i></span><span class="copy">${_("Loading")}</span></p>
     </div>
 </div>
+
+<div class="wrapper-profile-sections">
+  <div id="calendar"></div>
+  <div id='eventDialog' class='dialog ui-helper-hidden'>
+      <form>
+          <div>
+              <label>Title:</label>
+              <input id='title' class="field" type="text"></input>
+          </div>
+          <div>
+              <label>Color:</label>
+              <input id='color' class="field" type="text"></input>
+          </div>
+      </form>
+  </div>
+</div>
+
 <%block name="headextra">
     <%static:css group='style-course'/>
+    <link rel="stylesheet" href="${static.url("js/calendar/jquery-ui.min.css")}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="${static.url("js/calendar/fullcalendar.min.css")}" media="screen" title="no title" charset="utf-8">
 </%block>
 
 <%block name="js_extra">
@@ -41,4 +60,9 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
     var options = ${ json.dumps(data, cls=EscapedEdxJSONEncoder) };
     LearnerProfileFactory(options);
 </%static:require_module>
+
+<script type="text/javascript" src="${static.url("js/calendar/jquery-ui.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/calendar/moment.js")}"></script>
+<script type="text/javascript" src="${static.url("js/calendar/fullcalendar.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/calendar/app.js")}"></script>
 </%block>

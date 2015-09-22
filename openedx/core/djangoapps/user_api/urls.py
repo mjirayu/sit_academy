@@ -4,6 +4,7 @@ Defines the URL routes for this app.
 
 from .accounts.views import AccountView
 from .preferences.views import PreferencesView, PreferencesDetailView
+from .user_events.views import UserEventView, UserEventDetailView
 
 from django.conf.urls import patterns, url
 
@@ -25,5 +26,15 @@ urlpatterns = patterns(
         r'^v1/preferences/' + USERNAME_PATTERN + '/(?P<preference_key>[a-zA-Z0-9_]+)$',
         PreferencesDetailView.as_view(),
         name="preferences_detail_api"
+    ),
+    url(
+        r'^v1/events/$',
+        UserEventView.as_view(),
+        name="user_event_api"
+    ),
+    url(
+        r'^v1/events/(?P<pk>[0-9]+)$',
+        UserEventDetailView.as_view(),
+        name="user_event_detail_api"
     ),
 )
