@@ -41,6 +41,15 @@
                     <li>
                       ${video.name}
                       ${site_name}/${video.video}
+                      <%
+                        video_delete = reverse('upload_videos.views.video_delete',
+                          kwargs={'course_key_string': unicode(course_key), 'pk': video.id}
+                        )
+                      %>
+                      <form method="POST" action="${video_delete}">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }" />
+                        <button type="submit" name="button">Delete</button>
+                      </form>
                     </li>
                   % endfor
                 % else:

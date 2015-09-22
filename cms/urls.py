@@ -189,6 +189,7 @@ urlpatterns += patterns(
 
     url(r'^video_list/{}/$'.format(settings.COURSE_KEY_PATTERN), 'video_list', name='video_list'),
     url(r'^video_list/{}/upload$'.format(settings.COURSE_KEY_PATTERN), 'video_upload', name='video_upload'),
+    url(r'^video_list/{}/delete/(?P<pk>\d+)/$'.format(settings.COURSE_KEY_PATTERN), 'video_delete', name='video_delete'),
 )
 
 if settings.DEBUG:
