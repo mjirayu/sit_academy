@@ -179,6 +179,9 @@ class Tag(models.Model):
         null=True,
     )
 
+    def __unicode__(self):
+        return self.name
+
     class Meta(object):
         db_table = 'tag'
 

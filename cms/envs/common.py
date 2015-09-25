@@ -131,7 +131,7 @@ FEATURES = {
     # let students save and manage their annotations
     # for consistency in user-experience, keep the value of this feature flag
     # in sync with the one in lms/envs/common.py
-    'ENABLE_EDXNOTES': False,
+    'ENABLE_EDXNOTES': True,
 
     # Enable support for content libraries. Note that content libraries are
     # only supported in courses using split mongo.
@@ -153,13 +153,13 @@ FEATURES = {
     'ENABLE_COURSEWARE_INDEX': True,
 
     # Enable content libraries search functionality
-    'ENABLE_LIBRARY_INDEX': False,
+    'ENABLE_LIBRARY_INDEX': True,
 
     # Enable course reruns, which will always use the split modulestore
     'ALLOW_COURSE_RERUNS': True,
 
     # Certificates Web/HTML Views
-    'CERTIFICATES_HTML_VIEW': False,
+    'CERTIFICATES_HTML_VIEW': True,
 
     # Social Media Sharing on Student Dashboard
     'SOCIAL_SHARING_SETTINGS': {
@@ -567,6 +567,7 @@ STATICFILES_IGNORE_PATTERNS = (
     "coffee/*/*.coffee",
     "coffee/*/*/*.coffee",
     "coffee/*/*/*/*.coffee",
+    "js/calendar/*",
 
     # Symlinks used by js-test-tool
     "xmodule_js",
