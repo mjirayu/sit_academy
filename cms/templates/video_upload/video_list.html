@@ -46,7 +46,7 @@
                           kwargs={'course_key_string': unicode(course_key), 'pk': video.id}
                         )
                       %>
-                      <form method="POST" action="${video_delete}">
+                      <form method="POST" action="${video_delete}" style="float:left">
                         <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }" />
                         <button type="submit" name="button">Delete</button>
                       </form>
