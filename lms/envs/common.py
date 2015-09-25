@@ -1619,7 +1619,6 @@ STATICFILES_IGNORE_PATTERNS = (
     "coffee/*/*.coffee",
     "coffee/*/*/*.coffee",
     "coffee/*/*/*/*.coffee",
-    "js/calendar/*",
 
     # Symlinks used by js-test-tool
     "xmodule_js",
