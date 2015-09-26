@@ -11,8 +11,8 @@ data: |
 
       </script>
 
-      <script src="http://localhost:8000/static/js/vendor/pop_up_quiz/popUpProblems.js"></script>
-      <link rel="stylesheet" type="text/css" href="http://localhost:8000/static/js/vendor/pop_up_quiz/popUpProblems.css" />
+      <script src="/static/js/vendor/pop_up_quiz/popUpProblems.js"></script>
+      <link rel="stylesheet" type="text/css" href="/static/js/vendor/pop_up_quiz/popUpProblems.css" />
 
       <h4>Video Question Controls</h4>
 
