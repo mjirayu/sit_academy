@@ -1,0 +1,22 @@
+---
+metadata:
+    display_name: Pop up Quiz
+    editor: raw
+data: |
+      <script>
+      var popUpProblemTimer =
+      [
+      	{time: 120, title: "แบบฝึกหัดที่ 3"},
+      ];
+
+      </script>
+
+      <script src="http://localhost:8000/static/js/vendor/pop_up_quiz/popUpProblems.js"></script>
+      <link rel="stylesheet" type="text/css" href="http://localhost:8000/static/js/vendor/pop_up_quiz/popUpProblems.css" />
+
+      <h4>Video Question Controls</h4>
+
+      <button id="popUpPlayPause" aria-label="Start"><span id="playpauseicon" class="VQControls">&#8227;</span> <span id="playpauseword">Play</span></button>
+      <button id="popUpReset" aria-label="Answer Video Problems From Beginning"><span class="VQControls">&#8617;</span> Restart</button>
+      <button id="backOneProblem" aria-label="Go Back One Question"><span class="VQControls">&#8676;</span> Back One</button>
+      <button id="problemToggle" aria-label="Toggle Video Problems On/Off"><span id="sunmoon" class="VQControls">&#9788;</span> <span id="onoff">Problems are On</span></button>
