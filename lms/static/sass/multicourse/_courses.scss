@@ -92,6 +92,7 @@ $facet-background-color: #007db8;
       // CASE: Course Discovery Search disabled
       &.no-course-discovery {
         @include span-columns(12);
+        padding-top: 0px !important;
 
         @include media($bp-medium) {
           @include span-columns(8); // 8 of 8
