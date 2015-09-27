@@ -341,6 +341,7 @@
         a, span {
           @extend %t-title3;
           @extend %t-light;
+          color: #FD1616 !important;
           display: inline-block;
           margin-bottom: ($baseline/2);
 
@@ -528,7 +529,7 @@
       }
 
       .enter-course {
-        @extend %btn-pl-primary-base;
+        @extend %btn-pl-primary-base-edit;
         @include float(right);
 
         &.archived {
@@ -1317,4 +1318,3 @@ a.fade-cover{
     }
   }
 }
-

@@ -153,16 +153,19 @@ def courses(request):
     for tag in tags:
         tag_list.append(tag.tag.name)
 
+    # Add Course Tag that match User tag to Recommended List
     for course in courses:
         for tag in tag_list:
             if tag in course.course_tag:
                 if course.id not in enroll_list:
                     recommend.append(course)
 
+    # Lecturer Recommended Course
     for enroll_course in enroll_list:
         course = modulestore().get_course(enroll_course)
         course_lecturer_recommed.extend(course.lecturer_recommend)
 
+    # Add Lecturer Recommended Course to Recommended List
     for course in courses:
         if course.id.course in course_lecturer_recommed:
             print course.id.course, course_lecturer_recommed

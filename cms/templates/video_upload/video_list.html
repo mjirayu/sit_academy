@@ -40,7 +40,7 @@
                   % for video in upload_videos:
                     <li>
                       ${video.name}
-                      ${site_name}/${video.video}
+                      http://${site_name}/${video.video}
                       <%
                         video_delete = reverse('upload_videos.views.video_delete',
                           kwargs={'course_key_string': unicode(course_key), 'pk': video.id}

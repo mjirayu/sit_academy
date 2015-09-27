@@ -314,6 +314,17 @@
   color: $action-primary-fg;
 }
 
+%btn-pl-primary-base-edit {
+  @extend %btn-pl-default-base;
+  border: 1px solid #D82F2F !important;
+  background-color: #D82F2F;
+  color: $action-primary-fg;
+
+  &:hover, &:focus {
+    background-color: #FD1616 !important;
+  }
+}
+
 %btn-pl-green-base {
   @extend %btn-pl-default-base;
   background-color: darken($green-d1,10%);
