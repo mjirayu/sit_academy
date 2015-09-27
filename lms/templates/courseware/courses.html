@@ -29,7 +29,7 @@
 
 <%block name="pagetitle">${_("Courses")}</%block>
 
-% if len(recommned_courses):
+% if len(recommend_courses):
 <section class="home">
   <section class="courses-container">
     <section class="highlighted-courses">
@@ -37,7 +37,7 @@
       % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
         <section class="courses">
             <ul class="courses-listing">
-            %for course in recommned_courses[:4]:
+            %for course in recommend_courses[:4]:
               <li class="courses-listing-item">
                 <%include file="../course.html" args="course=course" />
               </li>

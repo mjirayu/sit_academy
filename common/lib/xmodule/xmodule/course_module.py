@@ -932,6 +932,12 @@ class CourseFields(object):
         scope=Scope.settings,
     )
 
+    lecturer_recommend = List(
+        display_name=_("Lecturer's Recommend"),
+        help=_("Enter Course Number for Recommendation"),
+        scope=Scope.settings,
+    )
+
 
 class CourseModule(CourseFields, SequenceModule):  # pylint: disable=abstract-method
     """

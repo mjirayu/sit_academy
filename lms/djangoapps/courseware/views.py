@@ -6,6 +6,7 @@ import logging
 import urllib
 import json
 import cgi
+import random
 
 from datetime import datetime
 from django.utils import translation
@@ -140,13 +141,14 @@ def courses(request):
     tag_list = []
     recommend = []
     enroll_list = []
+    course_lecturer_recommed = []
     courses = modulestore().get_courses()
     tags = UserInterestingTag.objects.filter(user_id=request.user.id)
     list_enroll = get_course_enrollments(request.user.id)
 
     for course_enroll in list_enroll:
         if course_enroll.course is not None:
-            enroll_list.append(course_enroll.course.id)
+            enroll_list.append(course_enroll.course_id)
 
     for tag in tags:
         tag_list.append(tag.tag.name)
@@ -157,12 +159,25 @@ def courses(request):
                 if course.id not in enroll_list:
                     recommend.append(course)
 
+    for enroll_course in enroll_list:
+        course = modulestore().get_course(enroll_course)
+        course_lecturer_recommed.extend(course.lecturer_recommend)
+
+    for course in courses:
+        if course.id.course in course_lecturer_recommed:
+            print course.id.course, course_lecturer_recommed
+            if course not in recommend:
+                recommend.append(course)
+
+    if len(recommend) > 4:
+        recommend = random.sample(recommend, 4)
+
     return render_to_response(
         "courseware/courses.html",
         {
             'courses': courses_list,
             'course_discovery_meanings': course_discovery_meanings,
-            'recommned_courses': recommend,
+            'recommend_courses': recommend,
         }
     )
 
