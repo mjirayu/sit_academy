@@ -440,6 +440,9 @@ if settings.COURSEWARE_ENABLED:
         # Student profile
         url(r'^u/(?P<username>[\w.@+-]+)$', 'student_profile.views.learner_profile', name='learner_profile'),
 
+        # Student sync course
+        url(r'^u/(?P<username>[\w.@+-]+)/sync$', 'student_profile.views.sync_course', name='learner_profile_sync'),
+
         # Student Notes
         url(r'^courses/{}/edxnotes'.format(settings.COURSE_ID_PATTERN),
             include('edxnotes.urls'), name="edxnotes_endpoints"),
@@ -723,4 +726,3 @@ urlpatterns += (
     url(r'^404$', handler404),
     url(r'^500$', handler500),
 )
-

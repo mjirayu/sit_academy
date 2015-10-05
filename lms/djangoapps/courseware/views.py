@@ -168,7 +168,6 @@ def courses(request):
     # Add Lecturer Recommended Course to Recommended List
     for course in courses:
         if course.id.course in course_lecturer_recommed:
-            print course.id.course, course_lecturer_recommed
             if course not in recommend:
                 recommend.append(course)
 
@@ -406,6 +405,8 @@ def index(request, course_id, chapter=None, section=None,
             course_key.to_deprecated_string()
         )
         return redirect(reverse('dashboard'))
+
+    print course_key, chapter, section, position
 
     request.user = user  # keep just one instance of User
     with modulestore().bulk_operations(course_key):

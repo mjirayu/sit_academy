@@ -1,21 +1,22 @@
 """ Views for a student's profile information. """
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django_countries import countries
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 
+from branding.views import get_course_enrollments
 from edxmako.shortcuts import render_to_response
 from openedx.core.djangoapps.user_api.accounts.api import get_account_settings
 from openedx.core.djangoapps.user_api.accounts.serializers import PROFILE_IMAGE_KEY_PREFIX
 from openedx.core.djangoapps.user_api.errors import UserNotFound, UserNotAuthorized
 from openedx.core.djangoapps.user_api.preferences.api import get_user_preferences
-from student.models import User
+from student.models import User, UserSyncCourse, UserProfile, UserEvent
 from microsite_configuration import microsite
+from xmodule.modulestore.django import modulestore
 
 
 @login_required
@@ -37,6 +38,19 @@ def learner_profile(request, username):
     Example usage:
         GET /account/profile
     """
+
+    user_sync = UserSyncCourse.objects.get(user=request.user.id)
+    course_list = []
+
+    if user_sync.sync:
+        list_enroll = get_course_enrollments(request.user.id)
+
+        for enroll_course in list_enroll:
+            course = modulestore().get_course(enroll_course.course_id)
+            course_list.append(course)
+
+        add_event_when_sync(course_list, request.user.id)
+
     try:
         return render_to_response(
             'student_profile/learner_profile.html',
@@ -73,8 +87,11 @@ def learner_profile_context(logged_in_user, profile_username, user_is_staff, bui
 
     preferences_data = get_user_preferences(profile_user, profile_username)
 
+    sync_course = UserSyncCourse.objects.get(user=logged_in_user.id)
+
     context = {
         'data': {
+            'profile_username': profile_user.username,
             'profile_user_id': profile_user.id,
             'default_public_account_fields': settings.ACCOUNT_VISIBILITY_CONFIGURATION['public_fields'],
             'default_visibility': settings.ACCOUNT_VISIBILITY_CONFIGURATION['default_visibility'],
@@ -94,5 +111,53 @@ def learner_profile_context(logged_in_user, profile_username, user_is_staff, bui
             'platform_name': microsite.get_value('platform_name', settings.PLATFORM_NAME),
         },
         'disable_courseware_js': True,
+        'sync_course': sync_course.sync,
     }
     return context
+
+
+def sync_course(request, username):
+    user = User.objects.get(
+        username=username
+    )
+    user_profile = UserProfile.objects.get(
+        user=user.id
+    )
+
+    user_sync = UserSyncCourse.objects.get(
+        user=user_profile.id
+    )
+
+    user_sync.sync = int(request.POST.get('sync'))
+    user_sync.save()
+
+    return HttpResponseRedirect('/')
+
+
+def add_event_when_sync(course_list, user_id):
+    for course in course_list:
+        for chapter in course.get_children():
+            for section in chapter.get_children():
+                if section.format and section.due:
+                    user_profile = UserProfile.objects.get(
+                        user=user_id
+                    )
+                    all_events = UserEvent.objects.filter(
+                        user=user_profile
+                    )
+                    if all_events:
+                        for event in all_events:
+                            if event.title != course.id.course + ' ' + section.format:
+                                UserEvent.objects.create(
+                                    user=user_profile,
+                                    title=course.id.course + ' ' + section.format,
+                                    start=section.due,
+                                    end=section.due
+                                )
+                    else:
+                        UserEvent.objects.create(
+                            user=user_profile,
+                            title=course.id.course + ' ' + section.format,
+                            start=section.due,
+                            end=section.due
+                        )

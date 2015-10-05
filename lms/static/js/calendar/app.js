@@ -105,6 +105,9 @@ $(function(){
             this.$el.dialog('close');
         },
         save: function() {
+            if (this.$('#color').val() == '') {
+              this.$('#color').val('#8CE196');
+            }
             this.model.set({
               'title': this.$('#title').val(),
               'color': this.$('#color').val()

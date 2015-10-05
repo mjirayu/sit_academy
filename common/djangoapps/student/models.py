@@ -364,7 +364,12 @@ class UserEvent(models.Model):
     title = models.CharField(max_length=255)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    color = models.CharField(max_length=100)
+    color = models.CharField(max_length=100, default='#8CE196')
+
+
+class UserSyncCourse(models.Model):
+    user = models.ForeignKey(UserProfile, db_index=True, related_name='user_sync_course')
+    sync = models.BooleanField(default=False)
 
 
 @receiver(pre_save, sender=UserProfile)

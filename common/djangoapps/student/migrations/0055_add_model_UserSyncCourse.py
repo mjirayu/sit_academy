@@ -8,21 +8,18 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'UserEvent'
-        db.create_table('student_userevent', (
+        # Adding model 'UserSyncCourse'
+        db.create_table('student_usersynccourse', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='user_event', to=orm['student.UserProfile'])),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('start', self.gf('django.db.models.fields.DateTimeField')()),
-            ('end', self.gf('django.db.models.fields.DateTimeField')()),
-            ('color', self.gf('django.db.models.fields.CharField')(default='#8CE196', max_length=100)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='user_sync_course', to=orm['student.UserProfile'])),
+            ('sync', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal('student', ['UserEvent'])
+        db.send_create_signal('student', ['UserSyncCourse'])
 
 
     def backwards(self, orm):
-        # Deleting model 'UserEvent'
-        db.delete_table('student_userevent')
+        # Deleting model 'UserSyncCourse'
+        db.delete_table('student_usersynccourse')
 
 
     models = {
@@ -245,6 +242,12 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'standing_last_changed_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'standing'", 'unique': 'True', 'to': "orm['auth.User']"})
+        },
+        'student.usersynccourse': {
+            'Meta': {'object_name': 'UserSyncCourse'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'sync': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'user_sync_course'", 'to': "orm['student.UserProfile']"})
         },
         'student.usertestgroup': {
             'Meta': {'object_name': 'UserTestGroup'},

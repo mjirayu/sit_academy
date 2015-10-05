@@ -34,6 +34,13 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
 </div>
 
 <div class="wrapper-profile-sections">
+  <div class="sync-label" style="width:100%">
+    <div class="switch">
+      <label for="sync-course">Sync Course</label>
+      <input id="sync-course" class="cmn-toggle cmn-toggle-round" type="checkbox">
+      <label for="sync-course" id="label-sync-course"></label>
+    </div>
+  </div>
   <div id="calendar"></div>
   <div id='eventDialog' class='dialog ui-helper-hidden'>
       <form>
@@ -60,6 +67,42 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
     var options = ${ json.dumps(data, cls=EscapedEdxJSONEncoder) };
     LearnerProfileFactory(options);
 </%static:require_module>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    if ('${sync_course}' == 'True') {
+      $('#sync-course').prop('checked', true);
+      $('#sync-course').change(function() {
+        $.ajax({
+          url: '/u/${data['profile_username']}/sync',
+          data: {
+            sync: 0
+          },
+          type: 'POST',
+          success: function(result) {
+            window.location='/u/${data['profile_username']}'
+          }
+        });
+        console.log('0')
+      });
+    } else {
+      $('#sync-course').prop('chekced', false);
+      $('#sync-course').change(function() {
+        $.ajax({
+          url: '/u/${data['profile_username']}/sync',
+          data: {
+            sync: 1
+          },
+          type: 'POST',
+          success: function(result) {
+            window.location='/u/${data['profile_username']}'
+          }
+        });
+        console.log('1')
+      })
+    }
+  });
+</script>
 
 <script type="text/javascript" src="${static.url("js/calendar/jquery-ui.min.js")}"></script>
 <script type="text/javascript" src="${static.url("js/calendar/moment.js")}"></script>
