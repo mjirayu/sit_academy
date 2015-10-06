@@ -135,29 +135,27 @@ def sync_course(request, username):
 
 
 def add_event_when_sync(course_list, user_id):
+    section_list = []
+    user_profile = UserProfile.objects.get(user=user_id)
     for course in course_list:
         for chapter in course.get_children():
             for section in chapter.get_children():
                 if section.format and section.due:
-                    user_profile = UserProfile.objects.get(
-                        user=user_id
+                    section_list.append(
+                        (course.id.course + ' ' + section.format, section.due)
                     )
-                    all_events = UserEvent.objects.filter(
-                        user=user_profile
-                    )
-                    if all_events:
-                        for event in all_events:
-                            if event.title != course.id.course + ' ' + section.format:
-                                UserEvent.objects.create(
-                                    user=user_profile,
-                                    title=course.id.course + ' ' + section.format,
-                                    start=section.due,
-                                    end=section.due
-                                )
-                    else:
-                        UserEvent.objects.create(
-                            user=user_profile,
-                            title=course.id.course + ' ' + section.format,
-                            start=section.due,
-                            end=section.due
-                        )
+
+    for key, value in section_list:
+        try:
+            event = UserEvent.objects.get(
+                user=user_profile,
+                title=key,
+                start=value
+            )
+        except:
+            UserEvent.objects.create(
+                user=user_profile,
+                title=key,
+                start=value,
+                end=value
+            )
