@@ -372,6 +372,14 @@ class UserSyncCourse(models.Model):
     sync = models.BooleanField(default=False)
 
 
+class ReminderNote(models.Model):
+    user = models.ForeignKey(UserProfile, db_index=True, related_name='user_reminder_note')
+    text = models.TextField(blank=True)
+
+    class Meta(object):
+        db_table = 'student_remindernote'
+
+
 @receiver(pre_save, sender=UserProfile)
 def user_profile_pre_save_callback(sender, **kwargs):
     """

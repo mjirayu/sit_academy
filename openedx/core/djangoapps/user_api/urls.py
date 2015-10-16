@@ -5,6 +5,7 @@ Defines the URL routes for this app.
 from .accounts.views import AccountView
 from .preferences.views import PreferencesView, PreferencesDetailView
 from .user_events.views import UserEventView, UserEventDetailView
+from .reminder_notes.views import ReminderNoteView, ReminderNoteDetailView
 
 from django.conf.urls import patterns, url
 
@@ -36,5 +37,15 @@ urlpatterns = patterns(
         r'^v1/events/(?P<pk>[0-9]+)$',
         UserEventDetailView.as_view(),
         name="user_event_detail_api"
+    ),
+    url(
+        r'^v1/reminders/$',
+        ReminderNoteView.as_view(),
+        name="reminder_note_api"
+    ),
+    url(
+        r'^v1/reminders/(?P<pk>[0-9]+)$',
+        ReminderNoteDetailView.as_view(),
+        name="reminder_note_detail_api"
     ),
 )

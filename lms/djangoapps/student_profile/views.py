@@ -39,17 +39,23 @@ def learner_profile(request, username):
         GET /account/profile
     """
 
-    user_sync = UserSyncCourse.objects.get(user=request.user.id)
-    course_list = []
+    try:
+        user_sync = UserSyncCourse.objects.get(user=request.user.id)
+        course_list = []
 
-    if user_sync.sync:
-        list_enroll = get_course_enrollments(request.user.id)
+        if user_sync.sync:
+            list_enroll = get_course_enrollments(request.user.id)
 
-        for enroll_course in list_enroll:
-            course = modulestore().get_course(enroll_course.course_id)
-            course_list.append(course)
+            for enroll_course in list_enroll:
+                course = modulestore().get_course(enroll_course.course_id)
+                course_list.append(course)
 
-        add_event_when_sync(course_list, request.user.id)
+            add_event_when_sync(course_list, request.user.id)
+    except:
+        user_profile = UserProfile.objects.get(user=request.user.id)
+        UserSyncCourse.objects.create(
+            user=user_profile
+        )
 
     try:
         return render_to_response(
