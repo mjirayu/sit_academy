@@ -1,3 +1,5 @@
+var edx = edx || {};
+
 var Note = Backbone.Model.extend({
   idAttribute: 'id',
 });
@@ -24,6 +26,11 @@ var NoteView = Backbone.View.extend({
   },
   save: function(event) {
     this.model.set({'text': this.$('#text-area').val()})
+    if (this.$('.alert-update').css('display') == 'block') {
+      this.$('.alert-update').fadeOut('fast');
+      this.$('.alert-update').fadeIn();
+    }
+    this.$('.alert-update').fadeIn();
     this.model.save();
   },
 });
@@ -33,6 +40,8 @@ var NotesView = Backbone.View.extend({
     this.listenTo(this.collection, 'add', this.addNote);
     this.listenTo(this.collection, 'remove', this.removeNote);
   },
+  tagName: 'div',
+  className: 'notes-view tab-content reminder_tab',
   events: {
     'click #add-note': 'createNote'
   },

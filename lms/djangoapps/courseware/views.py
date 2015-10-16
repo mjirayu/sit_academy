@@ -12,6 +12,7 @@ from datetime import datetime
 from django.utils import translation
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
+from django.utils import timezone
 
 from django.conf import settings
 from django.core.context_processors import csrf
@@ -168,7 +169,7 @@ def courses(request):
     # Add Lecturer Recommended Course to Recommended List
     for course in courses:
         if course.id.course in course_lecturer_recommed:
-            if course not in recommend:
+            if course not in recommend and course.end > timezone.now():
                 recommend.append(course)
 
     if len(recommend) > 4:

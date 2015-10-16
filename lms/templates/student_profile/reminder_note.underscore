@@ -1,13 +1,13 @@
 <script type="text/template" id="note-template">
-    <textarea id="text-area" rows="8" cols="30"><%= text %></textarea>
-    <div class="note-button">
-      <button class="remove">Remove</button>
-      <button class="save">Update</button>
-    </div>
-  </script>
+  <h3 class="alert-update"><%- gettext("Update Successfully") %></h3>
+  <textarea id="text-area" rows="8" cols="30"><%- text %></textarea>
+  <div class="note-button">
+    <button class="remove"><%- gettext("Remove") %></button>
+    <button class="save"><%- gettext("Update") %></button>
+  </div>
+</script>
 
 <script type="text/template" id="notes-template">
-  <h1>Note List</h1>
-  <button id="add-note">Add Note</button>
+  <h1><%- gettext("Reminder Note")%><button id="add-note"><%- gettext("Add Note")%></button></h1>
   <div id="notes"></div>
 </script>

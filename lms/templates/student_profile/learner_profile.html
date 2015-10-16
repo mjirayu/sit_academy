@@ -24,28 +24,6 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
             <%static:include path="student_profile/${template_name}.underscore" />
         </script>
     % endfor
-
-    <style media="screen">
-      .button_tab{
-        float: left;
-        padding-top: 1.5em;
-      }
-      textarea#text-area {
-      background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
-      min-width: 359px;
-      max-width: 359px;
-      height: 250px;
-      font: normal 14px verdana;
-      line-height: 25px;
-      padding: 2px 10px;
-      border: solid 1px #ddd;
-      margin-right: 1em;
-    }
-
-    .reminder-note {
-      float: left;
-    }
-    </style>
 </%block>
 
 <div class="message-banner" aria-live="polite"></div>
@@ -58,16 +36,16 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
 <div class="wrapper-profile-sections calendar_profile reminder">
   <div class="sync-label" style="width:100%">
     <div class="button_tab">
-      <button type="button" class="active" id="calendar_tab">${_("Calendar")}</button>
-      <button type="button" id="reminder_tab">${_("Reminder Note")}</button>
+      <button type="button" class="fc-state-active" href=".calendar_tab">${_("Calendar")}</button>
+      <button type="button" href=".reminder_tab">${_("Reminder Note")}</button>
     </div>
-    <div class="switch">
+    <div class="switch tab-content calendar_tab">
       <label for="sync-course">${_("Sync Course")}</label>
       <input id="sync-course" class="cmn-toggle cmn-toggle-round" type="checkbox">
       <label for="sync-course" id="label-sync-course"></label>
     </div>
   </div>
-  <div id="calendar"></div>
+  <div id="calendar" class="tab-content calendar_tab"></div>
   <div id='eventDialog' class='dialog ui-helper-hidden'>
       <form>
           <div>
@@ -97,37 +75,45 @@ from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
 </%static:require_module>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    if ('${sync_course}' == 'True') {
-      $('#sync-course').prop('checked', true);
-      $('#sync-course').change(function() {
-        $.ajax({
-          url: '/u/${data['profile_username']}/sync',
-          data: {
-            sync: 0
-          },
-          type: 'POST',
-          success: function(result) {
-            window.location='/u/${data['profile_username']}'
-          }
-        });
+$(document).ready(function() {
+  if ('${sync_course}' == 'True') {
+    $('#sync-course').prop('checked', true);
+    $('#sync-course').change(function() {
+      $.ajax({
+        url: '/u/${data['profile_username']}/sync',
+        data: {
+          sync: 0
+        },
+        type: 'POST',
+        success: function(result) {
+          window.location='/u/${data['profile_username']}'
+        }
       });
-    } else {
-      $('#sync-course').prop('chekced', false);
-      $('#sync-course').change(function() {
-        $.ajax({
-          url: '/u/${data['profile_username']}/sync',
-          data: {
-            sync: 1
-          },
-          type: 'POST',
-          success: function(result) {
-            window.location='/u/${data['profile_username']}'
-          }
-        });
-      })
-    }
+    });
+  } else {
+    $('#sync-course').prop('chekced', false);
+    $('#sync-course').change(function() {
+      $.ajax({
+        url: '/u/${data['profile_username']}/sync',
+        data: {
+          sync: 1
+        },
+        type: 'POST',
+        success: function(result) {
+          window.location='/u/${data['profile_username']}'
+        }
+      });
+    })
+  }
+  $(".button_tab button").click(function(event) {
+    event.preventDefault();
+    $(this).addClass("fc-state-active");
+    $(this).siblings().removeClass("fc-state-active");
+    var tab = $(this).attr("href");
+    $(".tab-content").not(tab).css("display", "none");
+    $(tab).fadeIn();
   });
+});
 </script>
 
 <script type="text/javascript" src="${static.url("js/calendar/jquery-ui.min.js")}"></script>
