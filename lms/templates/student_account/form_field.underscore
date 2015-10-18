@@ -37,7 +37,7 @@
             <% if ( required ) { %> aria-required="true" required<% } %> ></textarea>
     <% } else { %>
         <% if (defaultValue == 1) { %>
-          <label> Interesting Tag </label>
+          <label><%= gettext("Interesting Tag") %></label>
         <% } %>
         <input id="<%= form %>-<%= name %>"
            type="<%= type %>"
