@@ -7,3 +7,61 @@
     margin-bottom: 2em;
   }
 }
+
+input#id_name {
+  width: 15%;
+}
+
+.bootstrap-filestyle .form-control {
+  width: 30%;
+}
+
+.buttonText {
+  border: 1px solid #9E9E9E;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.upload-button {
+  background: #14c955;
+  border-color: #14c955;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: none;
+  line-height: 1.5em;
+  text-align: center;
+  border-radius: 4px;
+  transition: color 0.25s ease-in-out 0s,border-color 0.25s ease-in-out 0s,background 0.25s ease-in-out 0s,box-shadow 0.25s ease-in-out 0s;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    background: #1CDC60;
+    border-color: #1CDC60;
+  }
+}
+
+.delete-upload {
+  background: #C91414;
+  border-color: #C91414;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: none;
+  line-height: 1.5em;
+  text-align: center;
+  border-radius: 4px;
+  transition: color 0.25s ease-in-out 0s,border-color 0.25s ease-in-out 0s,background 0.25s ease-in-out 0s,box-shadow 0.25s ease-in-out 0s;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    background: #FF1717;
+    border-color: #FF1717;
+  }
+}
