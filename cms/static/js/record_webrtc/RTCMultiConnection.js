@@ -5035,7 +5035,6 @@
 
         // resources used in RTCMultiConnection
         connection.resources = {
-            RecordRTC: 'https://cdn.webrtc-experiment.com/RecordRTC.js',
             PreRecordedMediaStreamer: 'https://cdn.webrtc-experiment.com/PreRecordedMediaStreamer.js',
             customGetUserMediaBar: 'https://cdn.webrtc-experiment.com/navigator.customGetUserMediaBar.js',
             html2canvas: 'https://cdn.webrtc-experiment.com/screenshot.js',

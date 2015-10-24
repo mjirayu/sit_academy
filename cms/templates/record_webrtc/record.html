@@ -40,6 +40,7 @@
 </%block>
 
 <%block name="jsextra">
+<script type="text/javascript" src="${static.url("js/record_webrtc/RecordRTC.js")}"></script>
 <script type="text/javascript" src="${static.url("js/record_webrtc/firebase.js")}"></script>
 <script type="text/javascript" src="${static.url("js/record_webrtc/getMediaElement.min.js")}"></script>
 <script type="text/javascript" src="${static.url("js/record_webrtc/RTCMultiConnection.js")}"></script>
@@ -117,6 +118,9 @@ setupNewSession.onclick = function() {
     setupNewSession.disabled = true;
     record_button.disabled = false;
 
+    $('#setup-new-session').css('background-color', "#cbcbcb");
+    $('#setup-new-session').css('border', "1px solid #cbcbcb");
+
     var _session = 'audio+video+screen';
     var splittedSession = _session.split('+');
 
@@ -146,7 +150,9 @@ stop_button.onclick = function() {
     stop_button.disabled = true;
     document.getElementsByClassName('stop-recording-video')[0].click();
     document.getElementsByClassName('stop-recording-video')[0].click();
-    document.getElementsByClassName('stop-recording-audio')[0].click();
+    setTimeout(function() {
+      document.getElementsByClassName('stop-recording-audio')[0].click();
+    }, 5000);
 }
 
 </script>
