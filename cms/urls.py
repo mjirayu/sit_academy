@@ -192,6 +192,12 @@ urlpatterns += patterns(
     url(r'^video_list/{}/delete/(?P<pk>\d+)/$'.format(settings.COURSE_KEY_PATTERN), 'video_delete', name='video_delete'),
 )
 
+urlpatterns += patterns(
+    'record_webrtc.views',
+
+    url(r'^record_webrtc/$', 'index', name='record_webrtc'),
+)
+
 if settings.DEBUG:
     try:
         from .urls_dev import urlpatterns as dev_urlpatterns

@@ -1,0 +1,153 @@
+<%inherit file="../base.html" />
+<%def name="online_help_token()"><% return "files" %></%def>
+<%namespace name='static' file='../static_content.html'/>
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+%>
+<%block name="title">${_("Record Video and Screen")}</%block>
+
+<%block name="content">
+<div class="wrapper-mast wrapper">
+    <header class="mast has-actions has-subtitle">
+        <h1 class="page-header">
+            <small class="subtitle">${_("Content")}</small>
+            <span class="sr">&gt; </span>${_("Record Video and Screen")}
+        </h1>
+
+        <nav class="nav-actions" aria-label="${_('Page Actions')}">
+            <h3 class="sr">${_("Page Actions")}</h3>
+            <ul>
+                <li class="nav-item">
+                    <button id="setup-new-session" class="button new-button"> ${_("Start Session")}</button>
+                    <button id="record" class="button upload-button">${_("Start Record")}</button>
+                    <button id="stop" class="button upload-button">${_("Stop")}</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<div class="wrapper-content wrapper">
+  <section class="content">
+    <article class="content-primary" role="main">
+      <section class="experiment">
+          <div id="videos-container"></div>
+      </section>
+    </article>
+  </section>
+</div>
+</%block>
+
+<%block name="jsextra">
+<script type="text/javascript" src="${static.url("js/record_webrtc/firebase.js")}"></script>
+<script type="text/javascript" src="${static.url("js/record_webrtc/getMediaElement.min.js")}"></script>
+<script type="text/javascript" src="${static.url("js/record_webrtc/RTCMultiConnection.js")}"></script>
+
+<script>
+var connection = new RTCMultiConnection();
+var record_button = document.getElementById('record');
+var stop_button = document.getElementById('stop');
+
+record_button.disabled = true;
+stop_button.disabled = true;
+
+connection.session = {
+    audio: true,
+    video: true
+};
+
+connection.media.min(1280,720);
+connection.media.max(1920,1080);
+
+var videosContainer = document.getElementById('videos-container') || document.body;
+connection.onstream = function(e) {
+    var buttons = ['mute-audio', 'mute-video', 'record-audio', 'record-video', 'full-screen', 'volume-slider', 'stop'];
+
+    if (connection.session.audio && !connection.session.video) {
+        buttons = ['mute-audio', 'full-screen', 'stop'];
+    }
+
+    var mediaElement = getMediaElement(e.mediaElement, {
+        width: (videosContainer.clientWidth / 2) - 50,
+        title: e.userid,
+        buttons: buttons,
+        onMuted: function(type) {
+            connection.streams[e.streamid].mute({
+                audio: type == 'audio',
+                video: type == 'video'
+            });
+        },
+        onUnMuted: function(type) {
+            connection.streams[e.streamid].unmute({
+                audio: type == 'audio',
+                video: type == 'video'
+            });
+        },
+        onRecordingStarted: function(type) {
+            // www.RTCMultiConnection.org/docs/startRecording/
+            connection.streams[e.streamid].startRecording({
+                audio: type == 'audio',
+                video: type == 'video'
+            });
+        },
+        onRecordingStopped: function(type) {
+            // www.RTCMultiConnection.org/docs/stopRecording/
+            connection.streams[e.streamid].stopRecording(function(blob) {
+                if (blob.audio) {
+                  connection.saveToDisk(blob.audio);
+                } else if (blob.video) {
+                  connection.saveToDisk(blob.video);
+                } else {
+                  connection.saveToDisk(blob);
+                }
+            }, type);
+        },
+        onStopped: function() {
+            connection.peers[e.userid].drop();
+        }
+    });
+
+    videosContainer.insertBefore(mediaElement, videosContainer.firstChild);
+};
+
+var setupNewSession = document.getElementById('setup-new-session');
+
+setupNewSession.onclick = function() {
+    setupNewSession.disabled = true;
+    record_button.disabled = false;
+
+    var _session = 'audio+video+screen';
+    var splittedSession = _session.split('+');
+
+    var session = {};
+    for (var i = 0; i < splittedSession.length; i++) {
+        session[splittedSession[i]] = true;
+    }
+
+    var maxParticipantsAllowed = 256;
+
+    connection.session = session;
+    connection.maxParticipantsAllowed = maxParticipantsAllowed;
+
+    connection.open();
+};
+
+record_button.onclick = function() {
+    record_button.disabled = true;
+    stop_button.disabled = false;
+    document.getElementsByClassName('record-video')[0].click();
+    document.getElementsByClassName('record-video')[0].click();
+    document.getElementsByClassName('record-audio')[0].click();
+}
+
+stop_button.onclick = function() {
+    record_button.disabled = false;
+    stop_button.disabled = true;
+    document.getElementsByClassName('stop-recording-video')[0].click();
+    document.getElementsByClassName('stop-recording-video')[0].click();
+    document.getElementsByClassName('stop-recording-audio')[0].click();
+}
+
+</script>
+</%block>

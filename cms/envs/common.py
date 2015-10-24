@@ -733,6 +733,7 @@ INSTALLED_APPS = (
     'openedx.core.djangoapps.course_groups',  # not used in cms (yet), but tests run
     'xblock_config',
     'upload_videos',
+    'record_webrtc',
 
     # Tracking
     'track',
