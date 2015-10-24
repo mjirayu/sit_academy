@@ -8,6 +8,8 @@ body.discussion, .discussion-module {
 
   .post-label-following {
     @include forum-post-label($forum-color-following);
+    border-color: #DD5555 !important;
+    color: #DD5555 !important;
   }
 
   .post-label-reported {

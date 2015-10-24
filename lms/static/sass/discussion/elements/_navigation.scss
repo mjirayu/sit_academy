@@ -265,6 +265,9 @@
   min-width: 2em; // Fit most comment counts but allow expansion if necessary
   background-color: $gray-l3;
 
+  background-color: #DD5555 !important;
+  color: white !important;
+
   // Speech bubble tail
   &:after {
     content: '';
@@ -277,6 +280,8 @@
     border-style: solid;
     @include border-width(0, ($baseline/4), ($baseline/4), 0);
     @include border-color(transparent, $gray-l3, transparent, transparent);
+
+    border-right-color: #DD5555 !important;
   }
 
   &.is-unread {

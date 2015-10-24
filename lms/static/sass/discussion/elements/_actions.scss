@@ -142,20 +142,20 @@
     &.action-follow {
 
       .action-label {
-        color: $blue-d1;
+        color: #E6492C;
       }
 
       &.is-checked, &:hover, &:focus {
 
         .action-icon {
-          background-color: $forum-color-following;
-          border: 1px solid $blue-d1;
+          background-color: #DD5555;
+          border: 1px;
           color: $white;
         }
       }
 
       &:hover, &:focus {
-        border-color: $forum-color-following;
+        border-color: #DD5555;
       }
     }
 

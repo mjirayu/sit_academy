@@ -34,6 +34,15 @@
   .wmd-button {
     background: none;
   }
+
+  .submit {
+    background-image: linear-gradient(to bottom,#F16D6D,#E53838) !important;
+    border: 1px solid #AD2D2D !important;
+
+    &:hover {
+      background-image: linear-gradient(to bottom, #f35353, #e42525) !important;  
+    }
+  }
 }
 
 // =========================
@@ -41,7 +50,7 @@
 // CASE: inline styling
 // TO-DO: additional styling cleanup here necessary, for now this case was ported over from _discussion.scss
 .discussion-module {
-  
+
   .wmd-panel {
     width: 100%;
     min-width: 500px;

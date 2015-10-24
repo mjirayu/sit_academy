@@ -943,6 +943,7 @@
         // TYPE: pre-requisites
         .prerequisites {
           @include clearfix;
+          margin-top: 1.5em;
 
           .tip {
             font-family: $sans-serif;
