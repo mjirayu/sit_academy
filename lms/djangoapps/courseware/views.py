@@ -169,7 +169,7 @@ def courses(request):
     # Add Lecturer Recommended Course to Recommended List
     for course in courses:
         if course.id.course in course_lecturer_recommed:
-            if course not in recommend and course.end > timezone.now():
+            if course not in recommend:
                 recommend.append(course)
 
     if len(recommend) > 4:

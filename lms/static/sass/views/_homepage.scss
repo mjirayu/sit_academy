@@ -25,7 +25,7 @@ $learn-more-horizontal-position: calc(50% - 100px); // calculate the left positi
       @include box-sizing(border-box);
       @include transition(all $tmg-f3 linear 0s);
       position: relative;
-      border-bottom: 3px solid $action-primary-bg;
+      border-bottom: 3px solid #D65151;
       box-shadow: 0 1px 10px 0 $black-t0, inset 0 0 0 1px $white-t3;
       background: $body-bg;
       width: 100%;

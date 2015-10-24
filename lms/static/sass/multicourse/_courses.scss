@@ -297,24 +297,24 @@ $facet-background-color: #007db8;
     @include right(0);
     position: absolute;
     top: 0;
-    border: 2px solid $m-blue-d6;
+    border: 2px solid #8C1E1E;
     border-radius: ($baseline*0.1);
     height: $course-search-input-height;
     padding: 0 ($baseline*0.7);
-    background: $blue;
+    background: #D82F2F;
     box-shadow: none;
     color: $white;
     text-shadow: none;
 
     //STATE: hover, focus
     &:hover, &:focus {
-      background: $m-blue-d5;
+      background: #F32D2D;
     }
   }
 
   .loading-spinner {
     @include transition(all $tmg-f1 ease-out 0s);
-    background: $blue;
+    background: #D82F2F;
     position: absolute;
     top: ($baseline*0.7); // same as padding rule for .discovery-submit
   }
@@ -493,7 +493,7 @@ $facet-background-color: #007db8;
 
       //STATE: hover, focus
       &:hover, &:focus {
-        background: $facet-background-color;
+        background: #C71111;
         color: $white;
         text-decoration: none;
 

@@ -38,7 +38,7 @@
     @include margin-left(flex-gutter());
     width: flex-grid(3);
     margin-top: ($baseline*2);
-    border-top: 3px solid $blue;
+    border-top: 3px solid #E61C1C;
     padding: $baseline 0;
 
     .user-info {
@@ -534,6 +534,11 @@
 
         &.archived {
           @extend %btn-pl-default-base;
+          color: #E60F0F !important;
+
+          &:hover {
+            color: $white !important;
+          }
         }
       }
     }

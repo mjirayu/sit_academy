@@ -93,7 +93,7 @@ p {
 }
 
 a:link, a:visited {
-  color: $link-color;
+  color: #E72E00;
   font: normal 1em/1em $sans-serif;
   text-decoration: none;
   @include transition(all 0.1s linear 0s);
