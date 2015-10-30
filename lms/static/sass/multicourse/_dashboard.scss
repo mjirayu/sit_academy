@@ -943,7 +943,6 @@
         // TYPE: pre-requisites
         .prerequisites {
           @include clearfix;
-          margin-top: 1.5em;
 
           .tip {
             font-family: $sans-serif;
@@ -1323,4 +1322,8 @@ a.fade-cover{
       }
     }
   }
+}
+
+li.prerequisites {
+  margin-top: 1.5em !important;
 }
