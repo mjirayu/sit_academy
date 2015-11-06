@@ -10006,6 +10006,9 @@ msgstr "หลักสูตรแนะนำโดยผู้สอน"
 msgid "Enter Course Number for Recommendation"
 msgstr "ใส่รหัสหลักสูตรเพื่อการแนะนำ"
 
+msgid "Record Video"
+msgstr "อัดวีดีโอ"
+
 #: cms/templates/404.html cms/templates/error.html
 #: lms/templates/static_templates/404.html
 msgid "Page Not Found"
