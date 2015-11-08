@@ -4526,6 +4526,9 @@ msgstr "แท็กที่คุณสนใจ"
 msgid "Choose Tag that you interested in"
 msgstr "เลือกแท็กที่คุณสนใจ"
 
+msgid "Add Note"
+msgstr "เพิ่มโน๊ต"
+
 #: cms/static/coffee/src/main.js
 msgid ""
 "This may be happening because of an error with our server or your internet "
