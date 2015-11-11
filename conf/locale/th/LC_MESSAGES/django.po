@@ -9529,6 +9529,9 @@ msgstr "ยินดีต้อนรับสู่ SIT ACADEMY"
 msgid "Reccomended Courses"
 msgstr "หลักสูตรแนะนำ"
 
+msgid "Course Lists"
+msgstr "รายการหลักสูตร"
+
 #: cms/djangoapps/contentstore/course_group_config.py
 #: cms/djangoapps/contentstore/views/certificates.py
 msgid "invalid JSON"
