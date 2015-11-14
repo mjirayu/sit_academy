@@ -9532,6 +9532,9 @@ msgstr "หลักสูตรแนะนำ"
 msgid "Course Lists"
 msgstr "รายการหลักสูตร"
 
+msgid "Record Video and Screen"
+msgstr "อัดวีดีโอ และหน้าจอ"
+
 #: cms/djangoapps/contentstore/course_group_config.py
 #: cms/djangoapps/contentstore/views/certificates.py
 msgid "invalid JSON"
