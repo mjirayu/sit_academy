@@ -18,7 +18,7 @@ def video_list(request, course_key_string=None):
 
     upload_videos = UploadVideo.objects.filter(
         course_id=course_key
-    )
+    ).order_by('name')
 
     return render_to_response('video_upload/video_list.html', {
         'context_course': course_module,
