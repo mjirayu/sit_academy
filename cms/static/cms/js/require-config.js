@@ -7,6 +7,7 @@ require.config({
         "mustache": "js/vendor/mustache",
         "codemirror": "js/vendor/codemirror-compressed",
         "codemirror/stex": "js/vendor/CodeMirror/stex",
+        "ckeditor": "js/vendor/ckeditor/ckeditor",
         "jquery": "js/vendor/jquery.min",
         "jquery.ui": "js/vendor/jquery-ui.min",
         "jquery.form": "js/vendor/jquery.form",
@@ -182,6 +183,10 @@ require.config({
         },
         "codemirror/stex": {
             deps: ["codemirror"]
+        },
+        "ckeditor": {
+            exports: "CKEDITOR",
+            deps: ["jquery"]
         },
         "tinymce": {
             exports: "tinymce"

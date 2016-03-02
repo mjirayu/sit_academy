@@ -1,7 +1,7 @@
-define(["js/views/validation", "codemirror", "underscore", "jquery", "jquery.ui", "js/utils/date_utils", "js/models/uploads",
+define(["js/views/validation", "ckeditor", "underscore", "jquery", "jquery.ui", "js/utils/date_utils", "js/models/uploads",
     "js/views/uploads", "js/utils/change_on_enter", "js/views/license", "js/models/license",
     "js/views/feedback_notification", "jquery.timepicker", "date"],
-    function(ValidatingView, CodeMirror, _, $, ui, DateUtils, FileUploadModel,
+    function(ValidatingView, CKEditor, _, $, ui, DateUtils, FileUploadModel,
         FileUploadDialog, TriggerChangeEventOnEnter, LicenseView, LicenseModel, NotificationView) {
 
 var DetailsView = ValidatingView.extend({
@@ -14,7 +14,7 @@ var DetailsView = ValidatingView.extend({
         "change textarea" : "updateModel",
         "change select" : "updateModel",
         'click .remove-course-introduction-video' : "removeVideo",
-        'focus #course-overview' : "codeMirrorize",
+        'focus #course-overview' : "CKEditorize",
         'mouseover .timezone' : "updateTime",
         // would love to move to a general superclass, but event hashes don't inherit in backbone :-(
         'focus :input' : "inputFocus",
@@ -68,7 +68,7 @@ var DetailsView = ValidatingView.extend({
         this.setupDatePicker('enrollment_end');
 
         this.$el.find('#' + this.fieldToSelectorMap['overview']).val(this.model.get('overview'));
-        this.codeMirrorize(null, $('#course-overview')[0]);
+        this.CKEditorize(null, $('#course-overview')[0]);
 
         this.$el.find('#' + this.fieldToSelectorMap['short_description']).val(this.model.get('short_description'));
 
@@ -250,8 +250,8 @@ var DetailsView = ValidatingView.extend({
             this.$el.find('.remove-course-introduction-video').hide();
         }
     },
-    codeMirrors : {},
-    codeMirrorize: function (e, forcedTarget) {
+    CKEditors : {},
+    CKEditorize: function (e, forcedTarget) {
         var thisTarget;
         if (forcedTarget) {
             thisTarget = forcedTarget;
@@ -262,21 +262,19 @@ var DetailsView = ValidatingView.extend({
         {
             // e and forcedTarget can be null so don't deference it
             // This is because in cases where we have a marketing site
-            // we don't display the codeMirrors for editing the marketing
+            // we don't display the CKEditors for editing the marketing
             // materials, except we do need to show the 'set course image'
             // workflow. So in this case e = forcedTarget = null.
             return;
         }
 
-        if (!this.codeMirrors[thisTarget.id]) {
+        if (!this.CKEditors[thisTarget.id]) {
             var cachethis = this;
             var field = this.selectorToField[thisTarget.id];
-            this.codeMirrors[thisTarget.id] = CodeMirror.fromTextArea(thisTarget, {
-                mode: "text/html", lineNumbers: true, lineWrapping: true});
-            this.codeMirrors[thisTarget.id].on('change', function (mirror) {
-                    mirror.save();
+            this.CKEditors[thisTarget.id] = CKEditor.replace(thisTarget.id);
+            this.CKEditors[thisTarget.id].on('change', function (mirror) {
                     cachethis.clearValidationErrors();
-                    var newVal = mirror.getValue();
+                    var newVal = mirror.editor.getData();
                     if (cachethis.model.get(field) != newVal) {
                         cachethis.setAndValidate(field, newVal);
                     }
@@ -291,7 +289,7 @@ var DetailsView = ValidatingView.extend({
         this.model.fetch({
             success: function() {
                 self.render();
-                _.each(self.codeMirrors, function(mirror) {
+                _.each(self.CKEditors, function(mirror) {
                     var ele = mirror.getTextArea();
                     var field = self.selectorToField[ele.id];
                     mirror.setValue(self.model.get(field));
