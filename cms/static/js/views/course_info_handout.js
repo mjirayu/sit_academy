@@ -1,5 +1,5 @@
-define(["js/views/baseview", "codemirror", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal"],
-    function(BaseView, CodeMirror, NotificationView, CourseInfoHelper, ModalUtils) {
+define(["js/views/baseview", "ckeditor", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal"],
+    function(BaseView, CKEditor, NotificationView, CourseInfoHelper, ModalUtils) {
 
     // the handouts view is dumb right now; it needs tied to a model and all that jazz
     var CourseInfoHandoutsView = BaseView.extend({
@@ -44,8 +44,8 @@ define(["js/views/baseview", "codemirror", "js/views/feedback_notification", "js
             this.$editor.val(this.$preview.html());
             this.$form.show();
 
-            this.$codeMirror = CourseInfoHelper.editWithCodeMirror(
-                self.model, 'data', self.options['base_asset_url'], this.$editor.get(0));
+            this.$varCKEditor = CourseInfoHelper.editWithCKEditor(
+                self.model, 'data', self.options['base_asset_url'], this.$editor.get(0), "handouts-update");
 
             ModalUtils.showModalCover(false, function() { self.closeEditor() });
         },
@@ -54,7 +54,7 @@ define(["js/views/baseview", "codemirror", "js/views/feedback_notification", "js
             $('#handout_error').removeClass('is-shown');
             $('.save-button').removeClass('is-disabled').attr('aria-disabled', false);
             if ($('.CodeMirror-lines').find('.cm-error').length == 0){
-                this.model.set('data', this.$codeMirror.getValue());
+                this.model.set('data', this.$varCKEditor.getData());
                 var saving = new NotificationView.Mini({
                     title: gettext('Saving')
                 });
@@ -90,8 +90,7 @@ define(["js/views/baseview", "codemirror", "js/views/feedback_notification", "js
             $('.save-button').removeClass('is-disabled').attr('aria-disabled', false);
             this.$form.hide();
             ModalUtils.hideModalCover();
-            this.$form.find('.CodeMirror').remove();
-            this.$codeMirror = null;
+            this.$varCKEditor = null;
         }
     });
 

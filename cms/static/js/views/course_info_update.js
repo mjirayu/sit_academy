@@ -1,6 +1,6 @@
-define(["js/views/baseview", "codemirror", "js/models/course_update",
+define(["js/views/baseview", "ckeditor", "js/models/course_update",
     "js/views/feedback_prompt", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal"],
-    function(BaseView, CodeMirror, CourseUpdateModel, PromptView, NotificationView, CourseInfoHelper, ModalUtils) {
+    function(BaseView, CKEditor, CourseUpdateModel, PromptView, NotificationView, CourseInfoHelper, ModalUtils) {
 
     var CourseInfoUpdateView = BaseView.extend({
 
@@ -60,11 +60,7 @@ define(["js/views/baseview", "codemirror", "js/models/course_update",
             $(updateEle).prepend($newForm);
 
             var $textArea = $newForm.find(".new-update-content").first();
-            this.$codeMirror = CodeMirror.fromTextArea($textArea.get(0), {
-                mode: "text/html",
-                lineNumbers: true,
-                lineWrapping: true
-            });
+            this.$varCKEditor = CKEditor.replace($textArea.get(0).id);
 
             $newForm.addClass('editing');
             this.$currentPost = $newForm.closest('li');
@@ -83,7 +79,7 @@ define(["js/views/baseview", "codemirror", "js/models/course_update",
             var targetModel = this.eventModel(event);
             targetModel.set({
                 date : this.dateEntry(event).val(),
-                content : this.$codeMirror.getValue(),
+                content : this.$varCKEditor.getData(),
                 push_notification_selected : this.push_notification_selected(event)
             });
             // push change to display, hide the editor, submit the change
@@ -127,8 +123,8 @@ define(["js/views/baseview", "codemirror", "js/models/course_update",
             $(this.editor(event)).show();
             var $textArea = this.$currentPost.find(".new-update-content").first();
             var targetModel = this.eventModel(event);
-            this.$codeMirror = CourseInfoHelper.editWithCodeMirror(
-                targetModel, 'content', self.options['base_asset_url'], $textArea.get(0));
+            this.$varCKEditor = CourseInfoHelper.editWithCKEditor(
+                targetModel, 'content', self.options['base_asset_url'], $textArea.get(0), "news-update");
 
             // Variable stored for unit test.
             this.$modalCover = ModalUtils.showModalCover(false,
@@ -206,7 +202,6 @@ define(["js/views/baseview", "codemirror", "js/models/course_update",
                     // ignore but handle rest of page
                 }
                 this.$currentPost.find('form').hide();
-                this.$currentPost.find('.CodeMirror').remove();
 
                 // hide the push notification checkbox for subsequent edits to the Post
                 var push_notification_ele = this.$currentPost.find(".new-update-push-notification");
@@ -215,7 +210,7 @@ define(["js/views/baseview", "codemirror", "js/models/course_update",
             }
 
             ModalUtils.hideModalCover(this.$modalCover);
-            this.$codeMirror = null;
+            this.$varCKEditor = null;
         },
 
         // Dereferencing from events to screen elements

@@ -13,7 +13,7 @@
     <%= gettext("There is invalid code in your content. Please check to make sure it is valid HTML.") %>
   </div>
   <div class="row">
-    <textarea class="handouts-content-editor text-editor"></textarea>
+    <textarea class="handouts-content-editor text-editor" id="handouts-update"></textarea>
   </div>
   <div class="row">
     <a href="#" class="save-button"><%= gettext("Save") %></a>

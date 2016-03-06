@@ -88,6 +88,10 @@ div.info-wrapper {
       color: $link-color;
     }
 
+    p {
+      margin-left: 2em !important;
+    }
+
     &:after {
       left: -1px;
       right: auto;

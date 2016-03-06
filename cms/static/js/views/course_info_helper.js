@@ -1,19 +1,24 @@
-define(["codemirror", 'js/utils/handle_iframe_binding', "utility"],
-    function(CodeMirror, IframeBinding) {
-        var editWithCodeMirror = function(model, contentName, baseAssetUrl, textArea) {
+define(["ckeditor", 'js/utils/handle_iframe_binding', "utility"],
+    function(CKEditor, IframeBinding) {
+        var editWithCKEditor = function(model, contentName, baseAssetUrl, textArea, id) {
             var content = rewriteStaticLinks(model.get(contentName), baseAssetUrl, '/static/');
             model.set(contentName, content);
-            var $codeMirror = CodeMirror.fromTextArea(textArea, {
-                mode: "text/html",
-                lineNumbers: true,
-                lineWrapping: true,
-                autoCloseTags: true
-            });
+
+            var $codeMirror = CKEditor.instances[id];
+
+            if ($codeMirror) {
+              $codeMirror.destroy(true);
+            }
+
+            $codeMirror = CKEditor.replace(textArea.id);
             $codeMirror.on('change', function () {
                     $('.save-button').removeClass('is-disabled').attr('aria-disabled', false);
             });
-            $codeMirror.setValue(content);
-            $codeMirror.clearHistory();
+            $codeMirror.setData(content);
+            $codeMirror.on('setData', function(e) {
+              $codeMirror.resetUndo();
+            });
+
             return $codeMirror;
         };
 
@@ -28,6 +33,6 @@ define(["codemirror", 'js/utils/handle_iframe_binding', "utility"],
             return content;
         };
 
-        return {'editWithCodeMirror': editWithCodeMirror, 'changeContentToPreview': changeContentToPreview};
+        return {'editWithCKEditor': editWithCKEditor, 'changeContentToPreview': changeContentToPreview};
     }
 );
