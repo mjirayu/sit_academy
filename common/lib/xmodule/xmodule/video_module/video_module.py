@@ -46,6 +46,9 @@ from .video_handlers import VideoStudentViewHandlers, VideoStudioViewHandlers
 from xmodule.video_module import manage_video_subtitles_save
 from xmodule.mixin import LicenseMixin
 
+from cms.djangoapps.upload_videos.models import UploadVideo
+
+
 # The following import/except block for edxval is temporary measure until
 # edxval is a proper XBlock Runtime Service.
 #
@@ -567,6 +570,15 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
         video_url = metadata_fields['html5_sources']
         youtube_id_1_0 = metadata_fields['youtube_id_1_0']
 
+        upload_videos = UploadVideo.objects.filter(
+            course_id=self.location.course_key
+        ).order_by('name')
+
+        list_of_video_link = []
+
+        for link in upload_videos:
+            list_of_video_link.append(str(link.video))
+
         def get_youtube_link(video_id):
             # First try a lookup in VAL. If we have a YouTube entry there, it overrides the
             # one passed in.
@@ -584,6 +596,7 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
         video_url.update({
             'help': _('The URL for your video. This can be a YouTube URL or a link to an .mp4, .ogg, or .webm video file hosted elsewhere on the Internet.'),
             'display_name': _('Default Video URL'),
+            'test': list_of_video_link,
             'field_name': 'video_url',
             'type': 'VideoList',
             'default_value': [get_youtube_link(youtube_id_1_0['default_value'])]
@@ -600,6 +613,7 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
         }
 
         _context.update({'transcripts_basic_tab_metadata': metadata})
+
         return _context
 
     @classmethod
