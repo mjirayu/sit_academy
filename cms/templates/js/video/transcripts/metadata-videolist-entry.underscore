@@ -1,7 +1,9 @@
 <div class="wrapper-comp-setting metadata-videolist-enum">
   <label class="label setting-label" for="<%= uniqueId %>"><%= model.get('display_name')%></label>
   <div class="wrapper-videolist-settings">
-    <div class="wrapper-videolist-url videolist-settings-item"><input type="text" id="<%= uniqueId %>"  class="input videolist-url" value="<%= model.get('value')[0] %>"></div>
+    <div class="wrapper-videolist-url videolist-settings-item">
+      <input type="text" id="<%= uniqueId %>"  class="input videolist-url" value="<%= model.get('value')[0] %>">
+    </div>
     <div class="tip videolist-url-tip setting-help"><%= model.get('help') %></div>
     <div class="wrapper-videolist-urls">
       <a href="#" class="collapse-action collapse-setting">
@@ -20,8 +22,24 @@
       </div>
     </div>
   </div>
+  <div class="dropdown-links">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+      <% _.each(model.get('link_videos'), function(link){ %>
+        <a href="#" data-video-link="<%= link.video %>"><%= link.name %></a>
+      <% }); %>
+    </div>
+  </div>
 </div>
 <div class="transcripts-status is-invisible">
     <label class="label setting-label transcripts-label"><%= gettext("Default Timed Transcript") %></label>
     <div class="wrapper-transcripts-message"></div>
 </div>
+
+<script>
+  $('.dropdown-content a').click(function () {
+    var link = $(this).data('videoLink');
+
+    $('.videolist-url').val(link);
+  });
+</script>

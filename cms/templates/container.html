@@ -28,6 +28,7 @@ from django.utils.translation import ugettext as _
     <%static:include path="common/templates/image-modal.underscore" />
 </script>
 <link rel="stylesheet" type="text/css" href="${static.url('js/vendor/timepicker/jquery.timepicker.css')}" />
+
 </%block>
 
 <%block name="requirejs">
@@ -146,4 +147,8 @@ from django.utils.translation import ugettext as _
         </section>
     </div>
 </div>
+</%block>
+
+<%block name="jsextra">
+<script type="text/javascript" src="${static.url("js/upload_videos/jquery.min.js")}"></script>
 </%block>
