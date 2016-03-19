@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="dropdown-links">
-    <button class="dropbtn">Dropdown</button>
+    <button class="dropbtn"><div class="arrow-down"></div></button>
     <div class="dropdown-content">
       <% _.each(model.get('link_videos'), function(link){ %>
         <a href="#" data-video-link="<%= link.video %>"><%= link.name %></a>
