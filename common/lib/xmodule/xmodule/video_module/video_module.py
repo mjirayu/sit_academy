@@ -577,7 +577,13 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
         list_of_video_link = []
 
         for link in upload_videos:
-            list_of_video_link.append(str(link.video))
+            list_of_video_link.append({
+                'name': link.name,
+                'video': 'http://'
+                + settings.SITE_NAME
+                + '/' + str(link.video)
+            })
+
 
         def get_youtube_link(video_id):
             # First try a lookup in VAL. If we have a YouTube entry there, it overrides the
@@ -596,7 +602,7 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
         video_url.update({
             'help': _('The URL for your video. This can be a YouTube URL or a link to an .mp4, .ogg, or .webm video file hosted elsewhere on the Internet.'),
             'display_name': _('Default Video URL'),
-            'test': list_of_video_link,
+            'link_videos': list_of_video_link,
             'field_name': 'video_url',
             'type': 'VideoList',
             'default_value': [get_youtube_link(youtube_id_1_0['default_value'])]
