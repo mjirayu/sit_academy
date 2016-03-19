@@ -3,7 +3,46 @@
 
 <%block name="pagetitle">${_("About")}</%block>
 
+<%block name="headextra">
+<style media="screen">
+#kmutt, #sit-kmutt{
+  filter: gray; /* IE6-9 */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+
+#sit-kmutt {
+  margin-right: 1.5em;
+}
+
+#kmutt {
+  margin-left: 1.5em;
+}
+
+#kmutt:hover, #sit-kmutt:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+}
+
+#about-content {
+  text-indent: 3em;
+  line-height: 2.5em;
+  margin-bottom: 1em;
+}
+
+#about-image {
+  display: block;
+  text-align: center;
+}
+
+</style>
+</%block>
+
 <section class="container about">
-<h1>${_("About Us")}</h1>
-<p>${_("This page left intentionally blank. It is not used by edx.org but is left here for possible use by installations of Open edX.")}</p>
+<h2>${_("About Us")}</h2>
+<p id="about-content">${_("At present, many e-learning opportunities in Thailand serve Thai students the online classrooms. However, e-learning alone is not sufficient for providing an effective learning environment. School of Information Technology (SIT), King Mongkut's University of Technology Thonburi, Thailand has realized on this problem and attempted to find solution. Finally, SIT Academy founded by School of Information Technology (SIT) in 2015 as nonprofits Massive Open Online Course (MOOC) provider that delivery high quality online courses. We emphasized on differentiate position of traditional online classroom by serve up-to-date Information technology courses with interactive classroom and student community support. With our mission to enhance high quality education on the information technology and computer science area, we provide many courses prepared and continue to be governed by School of Information Technology (SIT) for everyone who is interested to start learning and improve their IT skills and knowledge, universal access for everywhere and without extra cost.")}</p>
+<div id="about-image">
+  <a href="http://www4.sit.kmutt.ac.th"><img id="sit-kmutt" src="http://elective.sit.kmutt.ac.th/MSC/check/img/SIT_logo.png" alt="SIT KMUTT"></a>
+  <a href="http://www.kmutt.ac.th"><img id="kmutt" src="http://4.bp.blogspot.com/-UplBW6MHsMY/VZK7qUzOwFI/AAAAAAAAJ8Y/unhFb0JdCGU/s1600/kmutt_logo.png" alt="KMUTT"></a>
+</div>
 </section>

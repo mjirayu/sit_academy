@@ -1794,6 +1794,9 @@ INSTALLED_APPS = (
     'djcelery',
     'south',
 
+    # Theme
+    'suit',
+
     # History tables
     'simple_history',
 
@@ -1949,6 +1952,7 @@ INSTALLED_APPS = (
     'teams',
 
     'xblock_django',
+
 )
 
 ######################### CSRF #########################################
