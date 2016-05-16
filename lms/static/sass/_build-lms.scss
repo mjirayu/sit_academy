@@ -69,6 +69,12 @@
 @import 'discussion/utilities/developer';
 @import 'discussion/utilities/shame';
 
+// static_html
+@import "static_html/static_html";
+
+// events
+@import "events/events";
+
 // search
 @import 'search/search';
 
