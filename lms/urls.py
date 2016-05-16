@@ -720,7 +720,7 @@ if 'debug_toolbar' in settings.INSTALLED_APPS:
 # Events
 urlpatterns += (
     url(r'^events$', 'events.views.event_list', name='events'),
-    url(r'^events/(?P<slug>[\w-]+)/$', 'events.views.detail', name='events'),
+    url(r'^events/(?P<slug>[\w\-]+)/$', 'events.views.detail', name='events'),
 )
 
 # Custom error pages
