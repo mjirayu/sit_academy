@@ -1,0 +1,58 @@
+<%! from django.utils.translation import ugettext as _ %>
+<%inherit file="../main.html" />
+<%namespace name='static' file='../static_content.html'/>
+
+<%block name="header_extras">
+  <style>
+    .events-container {
+      padding: 40px 10px 0 10px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+    }
+
+    .event-iframe {
+      float: left;
+      margin-right: 2em;
+      margin-bottom: 2em;
+    }
+
+    .event-iframe iframe {
+      height: 400px;
+      width: 720px;
+    }
+
+    .event-description {
+      float: left
+    }
+
+    .event-description p {
+      float: left;
+      font-family: "Open Sans" !important;
+    }
+
+    .detail-event h1 {
+      text-align: center;
+      font-size: 1.6em;
+      font-family: "Open Sans" !important;
+    }
+
+  </style>
+</%block>
+
+<section class="event-page">
+  <section class="events-container">
+    <div class="detail-event">
+      % if single_event:
+        <h1>${single_event.title}</h1>
+        <div class="event-iframe">
+          ${single_event.iframe}
+        </div>
+        <div class="event-description">
+          <p>${single_event.short_description}</p>
+        </div>
+      % endif
+    </div>
+  </section>
+</section>

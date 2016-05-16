@@ -1,0 +1,147 @@
+<%! from django.utils.translation import ugettext as _ %>
+<%inherit file="../main.html" />
+<%namespace name='static' file='../static_content.html'/>
+
+<%block name="header_extras">
+  <style>
+    .events-container {
+      padding: 40px 10px 0 10px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+    }
+
+    .events-container h2 {
+      font-family: "Open Sans" !important;
+    }
+
+    .single-event {
+      margin-bottom: 1em;
+    }
+
+    .single-event h3 {
+      margin-bottom: 0.5em;
+      font-family: "Open Sans" !important;
+    }
+
+    .single-event p {
+      font-family: "Open Sans" !important;
+    }
+
+    .single-event hr {
+      clear: both;
+    }
+
+    .event-content {
+      float: left;
+      padding-bottom: 1em;
+    }
+
+    .enter-event {
+      border: 1px solid #D82F2F;
+      background-color: #D82F2F;
+      color: #fff !important;
+      border-radius: 3px;
+      padding: 8px 20px;
+    }
+
+    .event-link {
+      float: right;
+      margin-top: 2%;
+    }
+
+    .live-event {
+      margin-bottom: 2.5em;
+    }
+
+    .record-event {
+      margin-top: 2.5em;
+    }
+
+    .pagination {
+      margin-bottom: 1em;
+    }
+
+    .pagination #previous {
+      float: left;
+    }
+
+    .pagination #next {
+      float: right;
+    }
+
+    .step-links {
+      text-align: center;
+    }
+
+  </style>
+</%block>
+
+<section class="event-page">
+  <section class="events-container">
+    <div class="live-event">
+      <h1>${_("Live Training Events from SIT Academy")}</h1>
+      <h2>${_("Live Events")}</h2>
+      <hr>
+      % if live_events:
+        % for record in live_events:
+          <div class="single-event">
+            <div class="event-content">
+              <h3>${record.title}</h3>
+              <p>${record.short_description}</p>
+            </div>
+            <div class="event-link">
+              <a href="http://${site_name}/events/${record.slug}" class="enter-event">${_("Watch Now")}</a>
+            </div>
+            <hr>
+          </div>
+        % endfor
+      % else:
+        <div>
+          <p>${_("No results were found for your search")}</p>
+        </div>
+      % endif
+    </div>
+
+    <div class="record-event">
+      <h2>${_("Record Events")}</h2>
+      <hr>
+      % if record_events:
+        % for record in record_events:
+          <div class="single-event">
+            <div class="event-content">
+              <h3>${record.title}</h3>
+              <p>${record.short_description}</p>
+            </div>
+            <div class="event-link">
+              <a href="http://${site_name}/events/${record.slug}" class="enter-event">${_("Watch Now")}</a>
+            </div>
+            <hr>
+        </div>
+        % endfor
+      % else:
+        <div>
+          <p>${_("No results were found for your search")}</p>
+        </div>
+      % endif
+    </div>
+
+    <div class="pagination">
+        <div class="step-links">
+            % if record_events.has_previous:
+                <a href="?page=${record_events.previous_page_number()}" id="previous">${_("Previous")}</a>
+            % endif
+
+            <span class="current">
+                ${_("Page")} ${record_events.number} ${_("of")} ${record_events.paginator.num_pages}
+            </span>
+
+            % if record_events.has_next:
+                <a href="?page=${record_events.next_page_number()}" id="next">${_("Next")}</a>
+            % endif
+        </div>
+    </div>
+
+  </section>
+</section>
