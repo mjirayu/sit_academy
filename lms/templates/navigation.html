@@ -75,6 +75,9 @@ site_status_msg = get_site_status_msg(course_id)
           </li>
         %endif
       </%block>
+      <li class="nav-global-01">
+        <a href="${reverse('events')}">${_('Events')}</a>
+      </li>
     </ol>
     <ol class="user">
       <li class="primary">
@@ -138,7 +141,9 @@ site_status_msg = get_site_status_msg(course_id)
             <a class="cta cta-register" href="/register${login_query()}">${_("Register")}</a>
           </li>
           % endif
-
+          <li class="nav-global-04">
+            <a href="${reverse('events')}">${_('Events')}</a>
+          </li>
       % endif
     </ol>
 

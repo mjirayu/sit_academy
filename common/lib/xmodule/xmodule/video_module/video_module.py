@@ -46,7 +46,7 @@ from .video_handlers import VideoStudentViewHandlers, VideoStudioViewHandlers
 from xmodule.video_module import manage_video_subtitles_save
 from xmodule.mixin import LicenseMixin
 
-# from cms.djangoapps.upload_videos.models import UploadVideo
+from cms.djangoapps.upload_videos.models import UploadVideo
 
 
 # The following import/except block for edxval is temporary measure until
