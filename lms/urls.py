@@ -717,6 +717,12 @@ if 'debug_toolbar' in settings.INSTALLED_APPS:
         url(r'^__debug__/', include(debug_toolbar.urls)),
     )
 
+# Events
+urlpatterns += (
+    url(r'^events$', 'events.views.event_list', name='events'),
+    url(r'^events/(?P<slug>[\w-]+)/$', 'events.views.detail', name='events'),
+)
+
 # Custom error pages
 handler404 = 'static_template_view.views.render_404'
 handler500 = 'static_template_view.views.render_500'
