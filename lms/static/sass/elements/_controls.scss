@@ -50,12 +50,12 @@
 %btn-inherited-primary {
   @extend %btn-inherited;
   @include linear-gradient(top, rgba($white, .3), rgba($white, 0));
-  border: 1px solid shade($action-primary-bg, 10%);
-  background-color: $action-primary-bg;
+  border: 1px solid #D82F2F;
+  background-color: #D82F2F;
   color: $action-primary-fg;
 
   &:hover, &:active, &:focus {
-    background-color: $action-primary-focused-bg;
+    background-color: #FD1616;
     color: $action-primary-focused-fg;
   }
 

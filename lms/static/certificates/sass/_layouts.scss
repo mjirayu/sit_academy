@@ -40,7 +40,6 @@
 
     .logo-img {
         display: block;
-        width: 100%;
     }
 }
 
@@ -348,5 +347,9 @@
                 margin-bottom: 0;
             }
         }
+    }
+
+    .wrapper-header {
+      background-color: black;
     }
 }
