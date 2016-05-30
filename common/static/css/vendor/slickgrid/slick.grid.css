@@ -11,6 +11,10 @@ classes should alter those!
   border-left: 0px;
 }
 
+.slick-header-column {
+  height: 2em !important;
+}
+
 .slick-header-columns, .slick-headerrow-columns {
   position: relative;
   white-space: nowrap;
