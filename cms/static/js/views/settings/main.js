@@ -1,6 +1,6 @@
 define(["js/views/validation", "ckeditor", "underscore", "jquery", "jquery.ui", "js/utils/date_utils", "js/models/uploads",
     "js/views/uploads", "js/utils/change_on_enter", "js/views/license", "js/models/license",
-    "js/views/feedback_notification", "jquery.timepicker", "date"],
+    "js/views/feedback_notification", "jquery.timepicker", "date", "ckeditor.config", "ckeditor.styles", "ckeditor.lang"],
     function(ValidatingView, CKEditor, _, $, ui, DateUtils, FileUploadModel,
         FileUploadDialog, TriggerChangeEventOnEnter, LicenseView, LicenseModel, NotificationView) {
 

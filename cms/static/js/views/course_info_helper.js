@@ -1,4 +1,4 @@
-define(["ckeditor", 'js/utils/handle_iframe_binding', "utility"],
+define(["ckeditor", 'js/utils/handle_iframe_binding', "utility", "ckeditor.config", "ckeditor.styles", "ckeditor.lang"],
     function(CKEditor, IframeBinding) {
         var editWithCKEditor = function(model, contentName, baseAssetUrl, textArea, id) {
             var content = rewriteStaticLinks(model.get(contentName), baseAssetUrl, '/static/');

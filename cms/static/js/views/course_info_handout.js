@@ -1,4 +1,5 @@
-define(["js/views/baseview", "ckeditor", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal"],
+define(["js/views/baseview", "ckeditor", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal",
+    "ckeditor.config", "ckeditor.styles", "ckeditor.lang"],
     function(BaseView, CKEditor, NotificationView, CourseInfoHelper, ModalUtils) {
 
     // the handouts view is dumb right now; it needs tied to a model and all that jazz

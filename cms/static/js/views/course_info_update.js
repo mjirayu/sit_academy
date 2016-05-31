@@ -1,5 +1,6 @@
 define(["js/views/baseview", "ckeditor", "js/models/course_update",
-    "js/views/feedback_prompt", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal"],
+    "js/views/feedback_prompt", "js/views/feedback_notification", "js/views/course_info_helper", "js/utils/modal",
+    "ckeditor.config", "ckeditor.styles", "ckeditor.lang"],
     function(BaseView, CKEditor, CourseUpdateModel, PromptView, NotificationView, CourseInfoHelper, ModalUtils) {
 
     var CourseInfoUpdateView = BaseView.extend({

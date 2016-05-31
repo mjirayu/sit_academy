@@ -8,6 +8,9 @@ require.config({
         "codemirror": "js/vendor/codemirror-compressed",
         "codemirror/stex": "js/vendor/CodeMirror/stex",
         "ckeditor": "js/vendor/ckeditor/ckeditor",
+        "ckeditor.config": "js/vendor/ckeditor/config",
+        "ckeditor.lang": "js/vendor/ckeditor/lang/en",
+        "ckeditor.styles": "js/vendor/ckeditor/styles",
         "jquery": "js/vendor/jquery.min",
         "jquery.ui": "js/vendor/jquery-ui.min",
         "jquery.form": "js/vendor/jquery.form",
@@ -188,6 +191,15 @@ require.config({
             exports: "CKEDITOR",
             deps: ["jquery"]
         },
+        "ckeditor.config": {
+            deps: ["ckeditor"]
+        },
+        "ckeditor.lang": {
+            deps: ["ckeditor"]
+        },
+        "ckeditor.styles": {
+            deps: ["ckeditor"]
+        },
         "tinymce": {
             exports: "tinymce"
         },
@@ -281,5 +293,5 @@ require.config({
             deps: ["annotator", "annotator-harvardx", "video.dev", "vjs.youtube", "rangeslider", "share-annotator", "richText-annotator", "reply-annotator", "tags-annotator", "flagging-annotator", "grouping-annotator", "diacritic-annotator", "openseadragon", "jquery-Watch", "catch", "handlebars", "URI"]
         },
         // end of annotation tool files
-    }
+    },
 });
